@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="跨域问题">
+
+
+
+
+  <meta name="keywords" content="浏览器, 记忆的话语">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2016/12/21/跨域问题/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 跨域问题 - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          跨域问题
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-21
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#同源策略"><span class="toc-text">同源策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#同源策略的限制"><span class="toc-text">同源策略的限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何阻止跨源访问"><span class="toc-text">如何阻止跨源访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#document-domain"><span class="toc-text">document.domain</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP控制访问CORS"><span class="toc-text">HTTP控制访问CORS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单请求"><span class="toc-text">简单请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预请求"><span class="toc-text">预请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应头说明"><span class="toc-text">响应头说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Access-Control-Allow-Origin"><span class="toc-text">Access-Control-Allow-Origin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Access-Control-Expose-Headers"><span class="toc-text">Access-Control-Expose-Headers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Access-Control-Max-Age"><span class="toc-text">Access-Control-Max-Age</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Access-Control-Allow-Credentials"><span class="toc-text">Access-Control-Allow-Credentials</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Access-Control-Allow-Methods"><span class="toc-text">Access-Control-Allow-Methods</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Access-Control-Allow-Headers"><span class="toc-text">Access-Control-Allow-Headers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求头说明"><span class="toc-text">请求头说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Origin"><span class="toc-text">Origin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Access-Control-Request-Method"><span class="toc-text">Access-Control-Request-Method</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Access-Control-Request-Headers"><span class="toc-text">Access-Control-Request-Headers</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#兼容性"><span class="toc-text">兼容性</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>什么是同源，满足三个条件相同</p>
+<ul>
+<li>协议, http与https不同源</li>
+<li>端口，80与8080 不同源</li>
+<li>主机 www.company.com与store.company.com不同源</li>
+</ul>
+<p>Ps. IE例外：不考虑端口；Trust Zones（可信任的域）的域名可以看作是同源</p>
+<h3 id="同源策略的限制"><a href="#同源策略的限制" class="headerlink" title="同源策略的限制"></a>同源策略的限制</h3><ul>
+<li>通常允许进行跨域写操作（Cross-origin writes）。例如链接（links），重定向以及表单提交。</li>
+<li>通常允许跨域资源嵌入（Cross-origin embedding）。就是跨域标签了<code>&lt;scipt&gt;</code>,<code>&lt;link&gt;</code>,<code>&lt;img&gt;</code>,<code>&lt;video&gt;</code>,<code>&lt;object&gt;</code>,<code>&lt;iframe&gt;</code></li>
+<li>通常不允许跨域读操作（Cross-origin reads）。但常可以通过内嵌资源来巧妙的进行读取访问。</li>
+</ul>
+<a id="more"></a>
+<h3 id="如何阻止跨源访问"><a href="#如何阻止跨源访问" class="headerlink" title="如何阻止跨源访问"></a>如何阻止跨源访问</h3><ul>
+<li>阻止跨域写操作，只要检测请求中的一个不可测的标记(CSRF token)即可，这个标记被称为Cross-Site Request Forgery (CSRF) 标记。必须使用这个标记来阻止页面的跨站读操作。</li>
+<li>阻止资源的跨站读取，需要保证该资源是不可嵌入的。阻止嵌入行为是必须的，因为嵌入资源通常向其暴露信息。</li>
+<li>阻止跨站嵌入，确保你得资源不能是以上列出的可嵌入资源格式。多数情况下浏览器都不会遵守Conten-Type消息头。例如，如果你在<code>&lt;script&gt;</code>标签中嵌入HTML文档，浏览器仍将HTML解析为Javascript。当你的资源入口不是指向你的网站, 你同样可以使用CSRF token阻止它嵌入.</li>
+</ul>
+<h3 id="document-domain"><a href="#document-domain" class="headerlink" title="document.domain"></a>document.domain</h3><p>如果是父子域跨域的情况，可以通过修改document.domain实现父子域同源 </p>
+<p>如站点store.company.com, 需要访问company.com/api</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.domain = &apos;company.com&apos;</span><br></pre></td></tr></table></figure>
+<p>(待验证)</p>
+<h2 id="HTTP控制访问CORS"><a href="#HTTP控制访问CORS" class="headerlink" title="HTTP控制访问CORS"></a>HTTP控制访问CORS</h2><h3 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h3><p>如：get一个数据</p>
+<p>post也可以，但是Content-Type只能是这三种之一</p>
+<ul>
+<li>application/x-www-form-urlencoded</li>
+<li>multipart/form-data</li>
+<li>text/plain</li>
+</ul>
+<h3 id="预请求"><a href="#预请求" class="headerlink" title="预请求"></a>预请求</h3><p>先发一个options请求，再发正式请求</p>
+<p>如：上传文件，想要使用自定义的请求头，如：x-modified</p>
+<h3 id="响应头说明"><a href="#响应头说明" class="headerlink" title="响应头说明"></a>响应头说明</h3><h4 id="Access-Control-Allow-Origin"><a href="#Access-Control-Allow-Origin" class="headerlink" title="Access-Control-Allow-Origin"></a>Access-Control-Allow-Origin</h4><p>允许来自哪些域的请求<br><br>出于安全性的考虑，如果客户端xhr指定了<code>withCredentials=true</code>，那么这个值是不能为<code>*</code>，必须指定有哪些域可访问的，确保了登陆态只能给我事前设置好的站点，</p>
+<h4 id="Access-Control-Expose-Headers"><a href="#Access-Control-Expose-Headers" class="headerlink" title="Access-Control-Expose-Headers"></a>Access-Control-Expose-Headers</h4><p>指定浏览器可以得到服务器的那些自定义的响应头信息，在预请求中,而不是正式请求，这和Access-Control-Allow-Headers是不一样的，这些头预请求的响应头，而不是正式请求的请求头</p>
+<h4 id="Access-Control-Max-Age"><a href="#Access-Control-Max-Age" class="headerlink" title="Access-Control-Max-Age"></a>Access-Control-Max-Age</h4><p>预请求的结果的有效期是多少，单位（秒）<br><br>浏览器关掉后就无效了，应该是这样，待验证</p>
+<h4 id="Access-Control-Allow-Credentials"><a href="#Access-Control-Allow-Credentials" class="headerlink" title="Access-Control-Allow-Credentials"></a>Access-Control-Allow-Credentials</h4><p>首先这个响应头的值是true或false，如果是true，服务端才把响应数据返回给客户的，否则不返回</p>
+<p>服务端是会根据客户端传过来的cookie判断身份信息是否有效，然后决定返回true还是false？？</p>
+<p>客户端xhr中的<code>withCredentials</code>属性可以决定客户端是不是要把cookie信息带上给服务端</p>
+<p>在用一个站点下使用<code>withCredentials</code>属性是无效的。</p>
+<h4 id="Access-Control-Allow-Methods"><a href="#Access-Control-Allow-Methods" class="headerlink" title="Access-Control-Allow-Methods"></a>Access-Control-Allow-Methods</h4><p>告诉客户端，服务端同意这些请求的方式，比如：get post options</p>
+<h4 id="Access-Control-Allow-Headers"><a href="#Access-Control-Allow-Headers" class="headerlink" title="Access-Control-Allow-Headers"></a>Access-Control-Allow-Headers</h4><p>预请求中指定服务器在<strong>正式</strong>的请求中会识别哪些请求头,就是预请求服务同意了哪些header，告诉客户端可以发起Access-Control-Request-Headers</p>
+<h3 id="请求头说明"><a href="#请求头说明" class="headerlink" title="请求头说明"></a>请求头说明</h3><h4 id="Origin"><a href="#Origin" class="headerlink" title="Origin"></a>Origin</h4><p>告诉服务器端，这个请求的来源是哪里，这个值当然就是请求当前所处的域，不包含任何路径信息</p>
+<h4 id="Access-Control-Request-Method"><a href="#Access-Control-Request-Method" class="headerlink" title="Access-Control-Request-Method"></a>Access-Control-Request-Method</h4><p>告诉服务端，实际请求的方式是什么</p>
+<h4 id="Access-Control-Request-Headers"><a href="#Access-Control-Request-Headers" class="headerlink" title="Access-Control-Request-Headers"></a>Access-Control-Request-Headers</h4><p>告诉服务端，自定义的header是哪些</p>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p>移动端可以认为全兼容</p>
+<p>PC端，Internet Explorer 8 和 9 通过 XDomainRequest 对象来实现CORS，其他也都ok</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2016/12/21/跨域问题/">https://caidewu.top/2016/12/21/跨域问题/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/浏览器/">浏览器</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/21/关于304缓存与200from-cache缓存/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">关于304缓存与200from cache缓存</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/16/详细说一下这道js面试题/">
+        <span class="next-text nav-default">详细说一下这道js面试题</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

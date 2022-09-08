@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Javascript中的原型">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2016/03/09/Javascript/Javascript中的prototype/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> Javascript中的原型 - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Javascript中的原型
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原型"><span class="toc-text">原型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从源头开始"><span class="toc-text">从源头开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Object对象"><span class="toc-text">Object对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#规则是什么"><span class="toc-text">规则是什么</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p><del>首先可以通过<code>__proto__</code>属性来查看对象的原型是什么，</del></p>
+<p>那么这个对象的原型怎么来的，通过构造函数上的<code>prototype</code>属性来定义，<br>普通对象是没有<code>prototype</code>属性的</p>
+<p>需要特别分清楚的是：<strong>一个对象的原型不等于自己的prototype属性，而是等于它的构造函数的prototype属性</strong>，很长时间，我对这个概念的理解是混乱的，上代码说明</p>
+<p>首先要确定哪些东西是语言定义的，（或者说是说死的，不要问为什么）<br>prototype</p>
+<p>而哪些东西是根据语法规则产生的</p>
+<p>Function类型对象：</p>
+<p>有prototype属性，他的prototype属性默认是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">constructor: 他自己</span><br><span class="line">__proto__: Object对象</span><br></pre></td></tr></table></figure>
+<p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function A() &#123;&#125;</span><br><span class="line"></span><br><span class="line">// 其实等价于</span><br><span class="line"></span><br><span class="line">var A = new Function();</span><br><span class="line"></span><br><span class="line">// constructor: A()</span><br><span class="line">// __proto__: Object</span><br><span class="line"></span><br><span class="line">// 那么 A.__proto__ === Function.prototype === function() &#123;&#125;</span><br><span class="line">// A.prototype ===</span><br></pre></td></tr></table></figure>
+<p>Object对象本身是个Function类型对象，他是有prototype属性的，而prototype属性上挂的属性和方法就会？？？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.__proto__ === obj.constructor.prototype === A.prototype</span><br></pre></td></tr></table></figure>
+<p>Object类型对象 全都是通过构造函数生成的，他是有原型的，但是没有prototype属性</p>
+<p>function A() {}</p>
+<p>var a = new A();</p>
+<p>由于JavaScript的所有对象都是通过构造函数生成的，而所有构造函数都有prototype属性（其实是所有函数都有prototype属性），所以所有对象都有自己的prototype原型对象。</p>
+<p>因此，一个对象的属性和方法，有可能是定义它自身上面，也有可能定义在它的原型对象上面。由于原型本身也是对象，又有自己的原型，所以形成了一条原型链（prototype chain）。</p>
+<p>比如，a对象是b对象的原型，b对象是c对象的原型，以此类推。</p>
+<p>因为追根溯源，</p>
+<p>最源头的对象都是从Object构造函数生成（使用new Object()命令），<br>所以如果一层层地上溯，所有对象的原型最终都可以上溯到Object.prototype。<br>那么，Object.prototype有没有原型呢？<br>回答可以是有，也可以是没有，<br>因为Object.prototype的原型是没有任何属性和方法的null。</p>
+<p>Object.prototype对象的原型是null，由于null没有任何属性，所以原型链到此为止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object.getPrototypeOf  ();</span><br><span class="line">var obj = new Object();</span><br><span class="line"> obj.constructor.prototype === Object.getPrototypeOf(obj)</span><br><span class="line">//结果：true</span><br></pre></td></tr></table></figure>
+<p>最简单的情况：一个对象的原型是在其构造函数的prototype属性上</p>
+<p></p>
+<hr>
+<p>妈蛋！！！<br>好乱啊</p>
+<a id="more"></a>
+<h2 id="从源头开始"><a href="#从源头开始" class="headerlink" title="从源头开始"></a>从源头开始</h2><p><strong>说明</strong>：根据js的语言标准，浏览器中<code>__proto__</code>代表着这个对象的原型，不要问什么</p>
+<h3 id="Object对象"><a href="#Object对象" class="headerlink" title="Object对象"></a>Object对象</h3><p>Object对象是一个Function类型对象，也是个构造函数</p>
+<ul>
+<li>他的原型是:    <code>Object.__proto__: function() {}</code> 所有函数类型的对象的<code>__proto__</code>都是这个</li>
+<li>他的prototype属性是: <code>Object.prototype</code>,这是语法定义的，不需要问为什么</li>
+</ul>
+<p>[Object.prototype]是个Object类型的对象, 他应该是语言层面的定义，他有什么属性和方法都是说定了的</p>
+<p>所以你不能因为他的constructor是Object，然后就说她的构造函数是Object，<br>所以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.__proto__ === Object.prototype // 这是不对的</span><br></pre></td></tr></table></figure>
+<p><strong>先要满足语言上的定义，在来说语法规则</strong></p>
+<p>所以，Object.prototype对象的原型是null，为什么，没有为什么，就是这样</p>
+<h2 id="规则是什么"><a href="#规则是什么" class="headerlink" title="规则是什么"></a>规则是什么</h2><blockquote>
+<p>一个对象的原型是其构造函数的prototype属性</p>
+</blockquote>
+<p>前面说的都是不讲理的话，现在可以好好讲下道理，道理就是上面这句话</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function A() &#123;&#125;</span><br><span class="line"></span><br><span class="line">var a = new A();	</span><br><span class="line">var a1 = new A();</span><br><span class="line"></span><br><span class="line">a.__proto__ === A.prototype;	// true</span><br><span class="line">a1.__proto__ === A.prototype;	// true</span><br></pre></td></tr></table></figure>
+<p>那么A.prototype是什么, </p>
+<ul>
+<li>首先，是个Object类型的对象</li>
+<li>他有一个constructor的属性，constructor是A自己</li>
+<li>还有一个原型(<code>__proto__</code>),是<code>Object.prototype</code></li>
+</ul>
+<p>这里又不能讲道理了，语言就是这么定的，这个东西和实例对象息息相关</p>
+<hr>
+<p>其实A本身也有原型，即<code>A.__proto__ : function() {}</code> ,这里是可以讲道理的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(A.constructor.prototype); // function() &#123;&#125;</span><br><span class="line">A.__proto__ === A.constructor.prototype; // true</span><br></pre></td></tr></table></figure>
+<p>这些实例对象是没什么关系的，任何函数默认都是如此</p>
+<p>回到A.prototype，上面说的是默认情况，但是这个对象可以改的</p>
+<p>比如为了实现继承：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Pa() &#123;&#125;</span><br><span class="line">Pa.prototype.parentMethod = function() &#123;&#125;</span><br><span class="line"></span><br><span class="line">function A() &#123;&#125;</span><br><span class="line"></span><br><span class="line">A.prototype = Pa.prototype;	// 继承Pa的方法</span><br><span class="line">A.prototype.constructor = A;	// 把constructor指回A</span><br><span class="line"></span><br><span class="line">// 实例对象操作</span><br><span class="line">var a = new A();</span><br><span class="line">a.parentMethod();	// 可以调的起来，说明a继承到了Pa的parentMethod方法</span><br></pre></td></tr></table></figure>
+<p>那么<code>A.prototype.constructor.prototype.constructor.prototype.constructor.prototype.constructor.prototype</code>是什么？</p>
+<p>因为 <code>A.prototype.constructor === A</code>, 所以上面无论写多少都是<code>A.prototype</code></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2016/03/09/Javascript/Javascript中的prototype/">https://caidewu.top/2016/03/09/Javascript/Javascript中的prototype/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/03/09/Javascript/Javascript中的对象-Object/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Javascript中的对象-Object</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/03/09/Javascript/Javascript中的new关键字/">
+        <span class="next-text nav-default">Javascript中的new关键字</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

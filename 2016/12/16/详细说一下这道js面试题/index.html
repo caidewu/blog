@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="详细说一下这道js面试题">
+
+
+
+
+  <meta name="keywords" content="javascript, 面试题, 记忆的话语">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2016/12/16/详细说一下这道js面试题/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 详细说一下这道js面试题 - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          详细说一下这道js面试题
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-16
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#先看题目"><span class="toc-text">先看题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析下题目"><span class="toc-text">分析下题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个一个来"><span class="toc-text">一个一个来</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一题"><span class="toc-text">第一题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二题"><span class="toc-text">第二题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三、四题"><span class="toc-text">第三、四题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第五题"><span class="toc-text">第五题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第六题"><span class="toc-text">第六题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第七题"><span class="toc-text">第七题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>今天面试遇到的一个问题，关于js的基本语法问题，因为我做错了，所以这种题目很无聊，额…严肃的说，其实这道题还是考察了挺多东西的，所以还是要拿来说说</p>
+</blockquote>
+<h2 id="先看题目"><a href="#先看题目" class="headerlink" title="先看题目"></a>先看题目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Dog() &#123;</span><br><span class="line">  a = function() &#123;console.log(&apos;1&apos;)&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Dog.a = function() &#123;console.log(&apos;2&apos;)&#125;;</span><br><span class="line">Dog.prototype.a = function() &#123;console.log(&apos;3&apos;)&#125;;</span><br><span class="line">var a = function() &#123;console.log(&apos;4&apos;)&#125;;</span><br><span class="line">function a() &#123;console.log(&apos;5&apos;)&#125;</span><br></pre></td></tr></table></figure>
+<p>下面代码会输出什么：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a();</span><br><span class="line">Dog.a();</span><br><span class="line">a();</span><br><span class="line">Dog.a();</span><br><span class="line">new Dog.a();</span><br><span class="line">new Dog().a;</span><br><span class="line">new new Dog().a;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>先来看下这道题考查的点：</p>
+<ul>
+<li>抗压能力</li>
+<li>函数式声明提升</li>
+<li>变量作用域</li>
+<li>全局变量</li>
+<li>js运算符优先级</li>
+<li>构造函数</li>
+<li>new关键字</li>
+<li>prototype方法</li>
+</ul>
+<h2 id="分析下题目"><a href="#分析下题目" class="headerlink" title="分析下题目"></a>分析下题目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 一个构造函数</span><br><span class="line">function Dog() &#123;</span><br><span class="line">  a = function() &#123;console.log(&apos;1&apos;)&#125;; // 这里的a是全局变量</span><br><span class="line">&#125;</span><br><span class="line">Dog.a = function() &#123;console.log(&apos;2&apos;)&#125;; //Dog虽然是个构造函数，但函数本质上也是对象，挂个属性没毛病 （但平时不会这么写代码）</span><br><span class="line">Dog.prototype.a = function() &#123;console.log(&apos;3&apos;)&#125;; // 这是正常给构造函数挂个方法，实例对象会用到这个方法</span><br><span class="line">var a = function() &#123;console.log(&apos;4&apos;)&#125;; </span><br><span class="line">function a() &#123;console.log(&apos;5&apos;)&#125; // 函数式声明会整体提升的</span><br></pre></td></tr></table></figure>
+<h2 id="一个一个来"><a href="#一个一个来" class="headerlink" title="一个一个来"></a>一个一个来</h2><h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><blockquote>
+<p>为了简单说明，下面用a函数输出的数字来代表a分别是哪个a</p>
+</blockquote>
+<p>因为5这个函数式声明，函数式声明会被提前至外部脚本或外部作用域顶部，所以5是最先被定义的</p>
+<p>然后来看1里的a，没有var，是全局变量，相当于a在第一行声明，不过因为有5的存在（已经声明并且定义），这个声明就是指向5的</p>
+<p>2和3都是Dog的作用域下，和这个无关</p>
+<p>代码分析到这里为止的话， <code>a();</code> 结果应该是5</p>
+<p>因为4这里a被重新赋值，所以 <code>a();</code> 结果是4</p>
+<h3 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h3><p>Dog虽然是构造函数，它也是个函数，但首先它是一个对象</p>
+<blockquote>
+<p>就好比你是小学生，小学生也是学生，但首先你是一个人</p>
+</blockquote>
+<p>所以Dog在这里就是对象，a就是它的一个属性而已，而这个属性是个方法，（）执行这个方法，所以结果是2</p>
+<h3 id="第三、四题"><a href="#第三、四题" class="headerlink" title="第三、四题"></a>第三、四题</h3><p>第三题和第四题问的一样，如果我还是小学生的时候，我就会举手问老师：老师这个题是不是出错了？</p>
+<p>但是从以往的面试题来说这里一定是个陷阱，因为<code>a()</code>执行了一次，再执行一次的话。。。。。。。。。。他妈的不还是一样，函数体内都是写死的东西啊，<code>Dog.a()</code>同理，不过面试高度紧张的时候，往往就不敢相信这是道送分题啊</p>
+<h3 id="第五题"><a href="#第五题" class="headerlink" title="第五题"></a>第五题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Dog.a();</span><br></pre></td></tr></table></figure>
+<p>看到new的时候，Dog作为一个构造函数应该在感慨终于轮到我登场了，然而现实却狠狠的打了它的脸。因为 <code>.</code>的优先级是高于<code>new</code>的, </p>
+<blockquote>
+<p>属性访问表达式和调用表达式的优先级比所有的运算符都要高</p>
+</blockquote>
+<p>所以被new的是<code>Dog.a</code>，而<code>Dog.a</code>是一个普通的函数，但是我们要知道<strong>构造函数是一种约定的名称，事实上任何函数都可以被new出一个对象</strong>，只是这种对象没什么卵用</p>
+<p>那么久要看new这个过程到底发生了什么, 有兴趣可以参考旧文</p>
+<blockquote>
+<p><a href="https://caidewu.cc/2016/03/09/Javascript%E4%B8%AD%E7%9A%84new%E5%85%B3%E9%94%AE%E5%AD%97/" target="_blank" rel="noopener">Javascript中的new关键字</a> </p>
+</blockquote>
+<p>这里只说一点，new的时候，被new的函数会执行，所以这就和第二相同，结果是2</p>
+<h3 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Dog().a;</span><br></pre></td></tr></table></figure>
+<p>如果没有第五题，这道题没什么特别的，但是经历第五题的各种优先级问题，你会怀疑自己，到底哪个先执行啊</p>
+<p>首先<code>()</code>,<code>[]</code>,<code>.</code>这个是最高优先级同级的，谁靠左边，最先执行</p>
+<p>所以这里先不管<code>.a</code>,那么就是<code>new Dog()</code>,这个的结果是让身为构造函数的Dog表示很欣慰，终于new出个正儿八经的对象了，</p>
+<p>这个对象有一个方法，没错就是挂在其构造函数Dog的prototype上的a</p>
+<p>所以这个执行的结果是没有console任何东西，这个a还没执行</p>
+<h3 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new new Dog().a;</span><br></pre></td></tr></table></figure>
+<p>第六题明白了，这道题就是送分题了,再加一个new，优先级当然是在最后了，执行过程同下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new ((new Dog()).a)</span><br></pre></td></tr></table></figure>
+<p>第六题的结果是a这个函数，普通函数呗new，就一定有函数被执行的过程，那么a执行就会打印出3</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实这种问题，做错也没什么，人的记性毕竟有时候就是不太可靠，但是分析过程要懂，说白了就是看着参考答案你要说的出来为什么，如果语法不过关是做不到这点</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2016/12/16/详细说一下这道js面试题/">https://caidewu.top/2016/12/16/详细说一下这道js面试题/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/javascript/">javascript</a>
+            
+              <a href="/tags/面试题/">面试题</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/21/跨域问题/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">跨域问题</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/14/在Mac中统计代码行数/">
+        <span class="next-text nav-default">在Mac中统计代码行数，find的命令怎么用</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

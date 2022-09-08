@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="C语言学习笔记">
+
+
+
+
+  <meta name="keywords" content="C语言, 记忆的话语">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2016/03/09/C语言学习笔记/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> C语言学习笔记 - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          C语言学习笔记
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux命令相关"><span class="toc-text">Linux命令相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-命令相关"><span class="toc-text">vim 命令相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cc编译命令："><span class="toc-text">cc编译命令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c语言"><span class="toc-text">c语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Makefile"><span class="toc-text">Makefile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debugger命令"><span class="toc-text">Debugger命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构体"><span class="toc-text">结构体</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h3 id="Linux命令相关"><a href="#Linux命令相关" class="headerlink" title="Linux命令相关"></a>Linux命令相关</h3><p>ls -l出来的文件列表，最前面的d代表着这是一个文件夹</p>
+<p>文件夹d 创建者权限rwx   创建者所在用户组权限rwx  其他人r-x<br> drw-rw-r–<br> -rwxrwxr-w</p>
+<p><code>echo</code>: 输出<br>echo $? ：输出上一条命令的返回值                                                    </p>
+<p>touch xxx,新建一个文件</p>
+<p><code>cat</code> 预览文本文件</p>
+<p><code>|</code> Linux管道</p>
+<p><code>grep xxx</code>:过滤出包含xxx的结果</p>
+<p><code>ps</code>: 查看进程<br>例如：<code>ps -e | grep ssh</code> 查看ssh的进程<br><a id="more"></a></p>
+<h3 id="vim-命令相关"><a href="#vim-命令相关" class="headerlink" title="vim 命令相关"></a>vim 命令相关</h3><p><code>i</code>: 当前位置插入<br><code>shift + i</code>: 行首插入<br><code>a</code>: 当前位置后一位插入<br><code>shift + a</code>: 行尾插入<br><code>o</code>: 换下一行插入<br><code>shift + o</code>: 换上一行插入<br><code>s</code>:  删除光标位置的字符，并插入<br><code>shift + s</code>: 删除当前一行，并插入<br><code>control + w</code>  切换tab</p>
+<p><code>:sp xxx</code>: 新增一个tab窗口<br><code>:wqa</code>: 保存所有文件并退出，a指所有文件<br><code>:set nu</code>: 显示行号</p>
+<p><code>10 dd</code>: 剪切当前光标行至10行的内容，<br><code>p</code>: 粘贴</p>
+<h3 id="cc编译命令："><a href="#cc编译命令：" class="headerlink" title="cc编译命令："></a>cc编译命令：</h3><p><code>cc hello.c</code>: 编译hello.c文件，输入默认的a.out执行文件</p>
+<p><code>cc hello.c -o main.out</code>: 输出执行文件名指定为main.out</p>
+<h3 id="c语言"><a href="#c语言" class="headerlink" title="c语言"></a>c语言</h3><p>include包含的<code>&lt;&gt;</code>是指引用的是系统预装的库<br>自己写的用<code>&quot;&quot;</code>包含就可以</p>
+<p>main函数中的return 0; 表示执行成功，其他值表示失败，<br>如果执行失败 ，&amp;&amp; 连接后的命令将不会被执行<br>如：a.out &amp;&amp; ls ,如果a中的main函数return 0；ls将会被执行，否则不会被执行</p>
+<p><code>&amp;</code>: 取地址符<br>如果知道一个地址，则需要在这个地址前面加一个<code>*</code>即可获取到该地址指向的值<br>如果着这个地址指向的不是数据段或者堆或者栈，而是指向代码段，编译器则认为这个地址指向的是一个函数指针<br><code>(*xxx)(arg)</code>即可执行该函数，<br>这种方式通常用于写回调函数</p>
+<p>scanf<br>printf</p>
+<p>linux的流<br>stdin<br>stdout<br>stderr</p>
+<p>输出流的重定向：<br><code>&gt;</code> 覆盖模式；<br><code>&gt;&gt;</code> 追加模式</p>
+<p>输入流重定向：<br><code>&lt;</code> 例如： ./a.out &lt; input.txt</p>
+<p>在64位的操作系统中，指针是占8个字节的，<br>32位系统中的指针是占4个字节<br>32位的地址总线需要4个字节，64位即8个字节</p>
+<h3 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">math.out:max.o min.o math.c</span><br><span class="line">        gcc max.o min.o hello.c -o math.out</span><br><span class="line">max.o:max.c</span><br><span class="line">        gcc -c max.c</span><br><span class="line">min.o:min.c</span><br><span class="line">        gcc -c min.c</span><br></pre></td></tr></table></figure>
+<p>注意Makefile文件中的缩减使用的是tap，而不是空格</p>
+<h3 id="Debugger命令"><a href="#Debugger命令" class="headerlink" title="Debugger命令"></a>Debugger命令</h3><p><code>n</code> 执行下一行代码<br><code>p</code> 打印命令，如 <code>p a</code>即打印a变量的值<br><code>s</code> 进入函数<br><code>bt</code> 显示函数所在栈<br><code>f</code> 切换当前所处在的函数</p>
+<p><code>x/&lt;n/f/u&gt; &lt;addr&gt;</code><br>n、f、u是可选的参数，<addr>表示一个内存地址</addr></p>
+<ul>
+<li>n 是一个正整数，表示显示内存的长度，也就是说从当前地址向后显示几个地址的内容</li>
+<li>f 表示显示的格式</li>
+<li>u 表示将多少个字节作为一个值取出来，如果不指定的话，GDB默认是4个bytes，如果不指定的话，默认是4个bytes。当我们指定了字节长度后，GDB会从指内存定的内存地址开始，读写指定字节，并把其当作一个值取出来。</li>
+</ul>
+<p>参数 f 的可选值：<br>x 按十六进制格式显示变量。<br>d 按十进制格式显示变量。<br>u 按十六进制格式显示无符号整型。<br>o 按八进制格式显示变量。<br>t 按二进制格式显示变量。<br>a 按十六进制格式显示变量。<br>c 按字符格式显示变量。<br>f 按浮点数格式显示变量。</p>
+<p>参数 u 可以用下面的字符来代替：<br>b 表示单字节<br>h 表示双字节<br>w 表示四字节<br>g 表示八字节</p>
+<ul>
+<li>注意这里的命令执行后，默认命令就被替换，</li>
+</ul>
+<p>例如：<br>(gdb) p record<br><code>$10 = {12, 76, 48, 62, 94, 17, 32, 37, 52, 69}</code><br>(gdb) p &amp;record<br><code>$11 = (int (*)[10]) 0x8049740</code><br>(gdb) x/4uw 0x8049740<br><code>0x8049740 &lt;record&gt;:    12    76    48    62</code><br>(gdb) x/6ow 0x8049740<br><code>0x8049740 &lt;record&gt;:    014    0114    060    076</code><br><code>0x8049750 &lt;record+16&gt;:    0136    021</code></p>
+<p>字符指针：存在代码段中 (不能被修改，通常用作常量)<br>字符数组：存在栈中 </p>
+<p>C语言只有在定义字符数组的时候才能用“=”来初始化变量，其它情况下是不能直接用“=”来为字符数组赋值的</p>
+<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><p>宏<br>宏替换：在预处理阶段使用字符串替换的方式</p>
+<p>不考虑语法，</p>
+<p>常量<br><code>#define M 100</code></p>
+<p>宏函数，不考虑c的语法，不需要设置参数类型<br><code>#define ADD(a,b)(a+b)</code></p>
+<p>别名： <code>typedef int aaa;</code></p>
+<p>typedef是有作用域的，宏是全局的</p>
+<p>共用体（联合体）：让几个不同类型的变量共享同一个内存地址<br><code>union</code></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2016/03/09/C语言学习笔记/">https://caidewu.top/2016/03/09/C语言学习笔记/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/C语言/">C语言</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/03/09/CSS学习笔记/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CSS学习笔记</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/03/09/Charles3.11-hack/">
+        <span class="next-text nav-default">Charles3.11-hack</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

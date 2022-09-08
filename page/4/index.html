@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="caidewu, 蔡德伍, Javascript, HTML5, 前端, Mac, iOS, Windows">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/page/4/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts">
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/03/09/Javascript/Javascript中的prototype/">Javascript中的原型</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p><del>首先可以通过<code>__proto__</code>属性来查看对象的原型是什么，</del></p>
+<p>那么这个对象的原型怎么来的，通过构造函数上的<code>prototype</code>属性来定义，<br>普通对象是没有<code>prototype</code>属性的</p>
+<p>需要特别分清楚的是：<strong>一个对象的原型不等于自己的prototype属性，而是等于它的构造函数的prototype属性</strong>，很长时间，我对这个概念的理解是混乱的，上代码说明</p>
+<p>首先要确定哪些东西是语言定义的，（或者说是说死的，不要问为什么）<br>prototype</p>
+<p>而哪些东西是根据语法规则产生的</p>
+<p>Function类型对象：</p>
+<p>有prototype属性，他的prototype属性默认是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">constructor: 他自己</span><br><span class="line">__proto__: Object对象</span><br></pre></td></tr></table></figure>
+<p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function A() &#123;&#125;</span><br><span class="line"></span><br><span class="line">// 其实等价于</span><br><span class="line"></span><br><span class="line">var A = new Function();</span><br><span class="line"></span><br><span class="line">// constructor: A()</span><br><span class="line">// __proto__: Object</span><br><span class="line"></span><br><span class="line">// 那么 A.__proto__ === Function.prototype === function() &#123;&#125;</span><br><span class="line">// A.prototype ===</span><br></pre></td></tr></table></figure>
+<p>Object对象本身是个Function类型对象，他是有prototype属性的，而prototype属性上挂的属性和方法就会？？？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.__proto__ === obj.constructor.prototype === A.prototype</span><br></pre></td></tr></table></figure>
+<p>Object类型对象 全都是通过构造函数生成的，他是有原型的，但是没有prototype属性</p>
+<p>function A() {}</p>
+<p>var a = new A();</p>
+<p>由于JavaScript的所有对象都是通过构造函数生成的，而所有构造函数都有prototype属性（其实是所有函数都有prototype属性），所以所有对象都有自己的prototype原型对象。</p>
+<p>因此，一个对象的属性和方法，有可能是定义它自身上面，也有可能定义在它的原型对象上面。由于原型本身也是对象，又有自己的原型，所以形成了一条原型链（prototype chain）。</p>
+<p>比如，a对象是b对象的原型，b对象是c对象的原型，以此类推。</p>
+<p>因为追根溯源，</p>
+<p>最源头的对象都是从Object构造函数生成（使用new Object()命令），<br>所以如果一层层地上溯，所有对象的原型最终都可以上溯到Object.prototype。<br>那么，Object.prototype有没有原型呢？<br>回答可以是有，也可以是没有，<br>因为Object.prototype的原型是没有任何属性和方法的null。</p>
+<p>Object.prototype对象的原型是null，由于null没有任何属性，所以原型链到此为止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object.getPrototypeOf  ();</span><br><span class="line">var obj = new Object();</span><br><span class="line"> obj.constructor.prototype === Object.getPrototypeOf(obj)</span><br><span class="line">//结果：true</span><br></pre></td></tr></table></figure>
+<p>最简单的情况：一个对象的原型是在其构造函数的prototype属性上</p>
+<p></p>
+<hr>
+<p>妈蛋！！！<br>好乱啊</p>
+          <div class="read-more">
+            <a href="/2016/03/09/Javascript/Javascript中的prototype/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/03/09/Javascript/Javascript中的new关键字/">Javascript中的new关键字</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="new的本质"><a href="#new的本质" class="headerlink" title="new的本质"></a><code>new</code>的本质</h2><p>执行构造函数，返回实例对象</p>
+<ol>
+<li>创建一个空对象，作为将要返回的对象实例</li>
+<li>将这个空对象的原型，指向构造函数的prototype属性</li>
+<li>将这个空对象赋值给函数内部的this关键字</li>
+<li>开始执行构造函数内部的代码</li>
+</ol>
+<p>根据这几步可以模拟写一个和<code>new</code>命令一样功能的方法出来</p>
+          <div class="read-more">
+            <a href="/2016/03/09/Javascript/Javascript中的new关键字/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/03/09/CSS学习笔记/">CSS学习笔记</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="CSS代码风格"><a href="#CSS代码风格" class="headerlink" title="CSS代码风格"></a>CSS代码风格</h2><h3 id="声明顺序"><a href="#声明顺序" class="headerlink" title="声明顺序"></a>声明顺序</h3><p>相关的属性声明应该以下面的顺序分组处理：</p>
+<ol>
+<li>Positioning</li>
+<li>Box model 盒模型</li>
+<li>Typographic 排版</li>
+<li>Visual 外观</li>
+</ol>
+<p>Positioning 处在第一位，因为他可以使一个元素脱离正常文本流，并且覆盖盒模型相关的样式。盒模型紧跟其后，因为他决定了一个组件的大小和位置。</p>
+<p>其他属性只在组件 内部 起作用或者不会对前面两种情况的结果产生影响，所以他们排在后面。<br>
+          <div class="read-more">
+            <a href="/2016/03/09/CSS学习笔记/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </p></div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/03/09/C语言学习笔记/">C语言学习笔记</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h3 id="Linux命令相关"><a href="#Linux命令相关" class="headerlink" title="Linux命令相关"></a>Linux命令相关</h3><p>ls -l出来的文件列表，最前面的d代表着这是一个文件夹</p>
+<p>文件夹d 创建者权限rwx   创建者所在用户组权限rwx  其他人r-x<br> drw-rw-r–<br> -rwxrwxr-w</p>
+<p><code>echo</code>: 输出<br>echo $? ：输出上一条命令的返回值                                                    </p>
+<p>touch xxx,新建一个文件</p>
+<p><code>cat</code> 预览文本文件</p>
+<p><code>|</code> Linux管道</p>
+<p><code>grep xxx</code>:过滤出包含xxx的结果</p>
+<p><code>ps</code>: 查看进程<br>例如：<code>ps -e | grep ssh</code> 查看ssh的进程<br>
+          <div class="read-more">
+            <a href="/2016/03/09/C语言学习笔记/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </p></div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/03/09/Charles3.11-hack/">Charles3.11-hack</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>关于Charles3.11的破解过程，本文所有操作均在Mac OS X EI Capitan下进行</p>
+          <div class="read-more">
+            <a href="/2016/03/09/Charles3.11-hack/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/02/12/Javascript/Javascript中的构造函数/">Javascript中的构造函数</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-02-12
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>长久以来，我一直觉得js中是不存在类，其实js只是没有class或者说class关键字（当然ES2015也有了），没有class不代表没有类，面向对象语言怎么可能没有类呢，先通过代码来看看js中的类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Range(from, to) &#123;</span><br><span class="line">	this.from = from,</span><br><span class="line">	this.to = to;</span><br><span class="line">	this.getLength = function() &#123;</span><br><span class="line">		console.log(&apos;length:&apos;, this.to - this.from);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类的实例对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var r = new Range(2 , 8);</span><br><span class="line">r.getLength();	// length: 6</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2016/02/12/Javascript/Javascript中的构造函数/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2015/08/16/科学上网Shadowsocks/">科学上网Shadowsocks</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-08-16
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>首先要说的是这应该是目前性价比最高的科学上网的方式，AWS免费一年，到期后，再去买VPS来搭建shadowsocks，也是一个道理，关键是比购买vpn或shadowsocks账户划算的多</p>
+          <div class="read-more">
+            <a href="/2015/08/16/科学上网Shadowsocks/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2015/03/30/来说说isNaN和isFinite/">来说说isNaN和isFinite</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-03-30
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>简单的说isNaN()是判断一个值是不是**不能被转成**数字，isFinite()是和isNaN()相反的，判断一个一个值是不是**能转成**数字</p>
+          <div class="read-more">
+            <a href="/2015/03/30/来说说isNaN和isFinite/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2015/03/27/让你的Git使用上ssh协议授权/">让你的Git使用上ssh协议授权</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-03-27
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <ol>
+<li>ssh原理</li>
+<li>基本的ssh配置</li>
+<li>多账号ssh配置</li>
+<li>同一平台下的多账号配置</li>
+</ol>
+<h2 id="ssh原理"><a href="#ssh原理" class="headerlink" title="ssh原理"></a>ssh原理</h2><p><a href="http://zh.wikipedia.org/zh/Secure_Shell" target="_blank" rel="noopener">维基百科：ssh</a></p>
+<p>个人觉得最直接的好处就是Git每次提交时不用输密码<br>
+          <div class="read-more">
+            <a href="/2015/03/27/让你的Git使用上ssh协议授权/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </p></div>
+
+    
+
+    
+
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+      <a class="prev" href="/page/3/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">上一页</span>
+      </a>
+    
+    
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

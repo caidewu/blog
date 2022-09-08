@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="caidewu, 蔡德伍, Javascript, HTML5, 前端, Mac, iOS, Windows">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/page/2/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts">
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/12/22/再来看Javascript中的原型/">再来说Javascript中的原型</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-22
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="toString是从哪来的"><a href="#toString是从哪来的" class="headerlink" title="toString是从哪来的"></a>toString是从哪来的</h2><p>先来看一段代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;&#125;;</span><br><span class="line">console.log(obj.toString()); // 结果是：&quot;[object Object]&quot;</span><br></pre></td></tr></table></figure>
+<p>这段代码很简单，一个对象调用了toString方法，但是如果我问你为什么可以调toString方法？toString是从哪来的？</p>
+<p>对于大多学过几天js的人知道，因为obj是继承了Object对象，而toString是Object对象的方法，所以obj可以调toString</p>
+<p>那么很明显，这个回答是正确的错误答案，因为关键字没有说到：<strong>原型</strong></p>
+          <div class="read-more">
+            <a href="/2016/12/22/再来看Javascript中的原型/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/12/22/浏览器缓存测试情况/">浏览器缓存测试情况</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-22
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="no-cache的情况"><a href="#no-cache的情况" class="headerlink" title="no-cache的情况"></a>no-cache的情况</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Content-Type: image/png</span><br><span class="line">Last-Modified: Tue, 08 Nov 2016 06:59:00 GMT</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Date: Thu, 10 Nov 2016 02:48:50 GMT</span><br><span class="line">Content-Length: 3534</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>打开方式</th>
+<th>chrome</th>
+<th>safari</th>
+<th>firefox</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>刷新</td>
+<td>304</td>
+<td>304</td>
+<td>304</td>
+</tr>
+<tr>
+<td>链接打开</td>
+<td>304</td>
+<td>304</td>
+<td>304</td>
+</tr>
+<tr>
+<td>地址栏回车</td>
+<td>304</td>
+<td>304</td>
+<td>304</td>
+</tr>
+</tbody>
+</table>
+<p>304的原因是：请求头里带上了If-Modified-Since，这个请求头是判断Last-Modified的时间是否大于http连接建立时间，没有大于，所以返回304</p>
+          <div class="read-more">
+            <a href="/2016/12/22/浏览器缓存测试情况/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/12/21/关于304缓存与200from-cache缓存/">关于304缓存与200from cache缓存</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-21
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>我们常见的浏览器缓存有两种，一种状态码是200，size显示是from-cache，另一种状态码是304，也就是通常我们说的304缓存</p>
+<p>根据<a href="https://tools.ietf.org/html/rfc7234" target="_blank" rel="noopener">HTTP协议规范</a>的定义，浏览器的缓存机制分为两块，也就是规范中的4.2. Freshness 和 4.3. Validation。</p>
+<ul>
+<li>Freshness（新鲜度），这个条件成立，就是200 from cache缓存，</li>
+<li>Validation（验证），当Freshness不成立时，就要看Validation，成立就是304缓存，不成立，拉取的就是新数据</li>
+</ul>
+<p>但是实际情况，某些浏览器并不是完全按照协议来实现缓存机制的，这个后面讲，先看Freshness和Validation是什么东西</p>
+<h2 id="Freshness（新鲜度）"><a href="#Freshness（新鲜度）" class="headerlink" title="Freshness（新鲜度）"></a>Freshness（新鲜度）</h2><p>决定一个资源是不是足够新鲜，需要看资源的两个响应头Expires和Cache Control，他们是用来进行Freshness验证，也就是提供客户端检测文件是否足够新鲜，可以无需向服务端发起Validation请求就能保证并未过期可以直接使用。</p>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>http1.0版本定义的，明确的过期时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expires:Sat, 30 Dec 2017 00:52:32 GMT</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2016/12/21/关于304缓存与200from-cache缓存/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/12/21/跨域问题/">跨域问题</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-21
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>什么是同源，满足三个条件相同</p>
+<ul>
+<li>协议, http与https不同源</li>
+<li>端口，80与8080 不同源</li>
+<li>主机 www.company.com与store.company.com不同源</li>
+</ul>
+<p>Ps. IE例外：不考虑端口；Trust Zones（可信任的域）的域名可以看作是同源</p>
+<h3 id="同源策略的限制"><a href="#同源策略的限制" class="headerlink" title="同源策略的限制"></a>同源策略的限制</h3><ul>
+<li>通常允许进行跨域写操作（Cross-origin writes）。例如链接（links），重定向以及表单提交。</li>
+<li>通常允许跨域资源嵌入（Cross-origin embedding）。就是跨域标签了<code>&lt;scipt&gt;</code>,<code>&lt;link&gt;</code>,<code>&lt;img&gt;</code>,<code>&lt;video&gt;</code>,<code>&lt;object&gt;</code>,<code>&lt;iframe&gt;</code></li>
+<li>通常不允许跨域读操作（Cross-origin reads）。但常可以通过内嵌资源来巧妙的进行读取访问。</li>
+</ul>
+          <div class="read-more">
+            <a href="/2016/12/21/跨域问题/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/12/16/详细说一下这道js面试题/">详细说一下这道js面试题</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-16
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <blockquote>
+<p>今天面试遇到的一个问题，关于js的基本语法问题，因为我做错了，所以这种题目很无聊，额…严肃的说，其实这道题还是考察了挺多东西的，所以还是要拿来说说</p>
+</blockquote>
+<h2 id="先看题目"><a href="#先看题目" class="headerlink" title="先看题目"></a>先看题目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Dog() &#123;</span><br><span class="line">  a = function() &#123;console.log(&apos;1&apos;)&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Dog.a = function() &#123;console.log(&apos;2&apos;)&#125;;</span><br><span class="line">Dog.prototype.a = function() &#123;console.log(&apos;3&apos;)&#125;;</span><br><span class="line">var a = function() &#123;console.log(&apos;4&apos;)&#125;;</span><br><span class="line">function a() &#123;console.log(&apos;5&apos;)&#125;</span><br></pre></td></tr></table></figure>
+<p>下面代码会输出什么：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a();</span><br><span class="line">Dog.a();</span><br><span class="line">a();</span><br><span class="line">Dog.a();</span><br><span class="line">new Dog.a();</span><br><span class="line">new Dog().a;</span><br><span class="line">new new Dog().a;</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2016/12/16/详细说一下这道js面试题/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/12/14/在Mac中统计代码行数/">在Mac中统计代码行数，find的命令怎么用</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-14
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h3 id="先来看怎么用"><a href="#先来看怎么用" class="headerlink" title="先来看怎么用"></a>先来看怎么用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 统计文件类型是`*.m`,`*.mm`,`*.cpp`,`*.h`,`*.rss`的文件代码行数</span><br><span class="line">find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.cpp&quot; -or -name &quot;*.h&quot; -or -name &quot;*.rss&quot; &quot;)&quot; | xargs wc -l</span><br><span class="line"> </span><br><span class="line"># 统计js文件行数</span><br><span class="line">find . &quot;(&quot; -name &quot;*.js&quot; &quot;)&quot; | xargs wc -l</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2016/12/14/在Mac中统计代码行数/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/12/13/当网管系列/华为交换机配置/">华为交换机配置</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-13
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="先要连上设备"><a href="#先要连上设备" class="headerlink" title="先要连上设备"></a>先要连上设备</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ol>
+<li>一台电脑（Windows系统，或是虚拟机都可以）</li>
+<li>一根console线（RJ45转R232串口的线）</li>
+<li>一个R232转USB线（如果电脑有串口可以忽略）</li>
+<li>USB 2.0 To COM Device驱动（如果电脑有串口可以忽略）</li>
+<li>超级终端（win7以上需要）</li>
+</ol>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>把console线接到交换机的console口中，然后接串口转USB线，然后接电脑，如果是2016MBP，你还得转接Type-c。。。 holy shit！！！</p>
+<p>先装驱动：USB 2.0 To COM Device</p>
+<p>打开超级终端，没有说到的参数，随便写，</p>
+<p>串行选项中，需要配置</p>
+<ol>
+<li>端口，看设备管理里是COM几被连接上</li>
+<li>波特率：9600</li>
+<li>数据位：8</li>
+<li>奇偶校验：无</li>
+<li>停止位：1</li>
+</ol>
+          <div class="read-more">
+            <a href="/2016/12/13/当网管系列/华为交换机配置/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/12/12/使用node来完成文件的批处理/">使用vinyl-fs替换node中的fs来完成文件的批处理</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-12
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>其实gulp做了一套输入输出流的适配器接口及对象封装，并且单独抽离出来作为独立模块，也就是[vinyl-fs](https://github.com/gulpjs/vinyl-fs), 通过它可以非常方便的对文件输入输出</p>
+          <div class="read-more">
+            <a href="/2016/12/12/使用node来完成文件的批处理/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/11/11/Javascript/Javascript中的数组-Array/">Javascript中的数组-Array</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-11-11
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <blockquote>
+<p>本文主要供平时健忘症发作的时候查阅, 详细的可以参考这个<a href="http://javascript.ruanyifeng.com/stdlib/array.html" target="_blank" rel="noopener">http://javascript.ruanyifeng.com/stdlib/array.html</a></p>
+</blockquote>
+<h2 id="操作当前数组"><a href="#操作当前数组" class="headerlink" title="操作当前数组"></a>操作当前数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pop()		// 从尾部去掉</span><br><span class="line">push()		// 从尾部加入</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">unshift(insert1,insert2…insertN)     //从头部加入，不支持ie</span><br><span class="line">shift()         //从头部删除</span><br><span class="line"></span><br><span class="line">sort(sortby)		// sortby非必填</span><br><span class="line"></span><br><span class="line">reverse()     //反转数组</span><br><span class="line"></span><br><span class="line">splice(index,howmany,insert1,insert2…insertN)</span><br><span class="line">// insert非必填</span><br><span class="line">// 返回值是切割出来新的数组，</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2016/11/11/Javascript/Javascript中的数组-Array/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/11/11/Flex布局学习笔记/">Flex布局学习笔记</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-11-11
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <blockquote>
+<p>之所以有本文的原因是，在某些网络环境下，阮一峰的博客有时会打不开（或者很卡），所以把图片内容去掉后复制过来，方便自己查阅</p>
+<p>原文链接：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">Flex布局教程：语法篇</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;item&quot;&gt;&lt;/div&gt;</span><br><span class="line">	&lt;div class=&quot;item&quot;&gt;&lt;/div&gt;</span><br><span class="line">	&lt;div class=&quot;item&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="容器样式-box"><a href="#容器样式-box" class="headerlink" title="容器样式(.box)"></a>容器样式(.box)</h2><h3 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h3><ul>
+<li>flex-direction: row | row-reverse | column | column-reverse;</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>row（默认值）：</td>
+<td>主轴为水平方向，起点在左端。</td>
+</tr>
+<tr>
+<td>row-reverse：</td>
+<td>主轴为水平方向，起点在右端。</td>
+</tr>
+<tr>
+<td>column：</td>
+<td>主轴为垂直方向，起点在上沿。</td>
+</tr>
+<tr>
+<td>column-reverse：</td>
+<td>主轴为垂直方向，起点在下沿。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h3><ul>
+<li>flex-wrap: nowrap | wrap | wrap-reverse;</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nowrap（默认）：</td>
+<td>不换行。</td>
+</tr>
+<tr>
+<td>wrap：</td>
+<td>换行，第一行在上方。</td>
+</tr>
+<tr>
+<td>wrap-reverse：</td>
+<td>换行，第一行在下方。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h3><ul>
+<li>flex-flow: <code>&lt;flex-direction&gt;</code> || <code>&lt;flex-wrap&gt;</code>;</li>
+</ul>
+<p>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</p>
+          <div class="read-more">
+            <a href="/2016/11/11/Flex布局学习笔记/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+      <a class="prev" href="/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">上一页</span>
+      </a>
+    
+    
+      <a class="next" href="/page/3/">
+        <span class="next-text">下一页</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

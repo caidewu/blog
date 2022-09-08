@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Javascript中Object是所有对象的祖宗，所有对象都继承自它，而它本身也是一个构造函数，可以直接生成或包装对象">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2016/03/09/Javascript/Javascript中的对象-Object/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> Javascript中的对象-Object - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Javascript中的对象-Object
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Object对象的方法"><span class="toc-text">Object对象的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object实例对象的方法"><span class="toc-text">Object实例对象的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象的属性模型"><span class="toc-text">对象的属性模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可枚举性（enumerable）"><span class="toc-text">可枚举性（enumerable）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存取器"><span class="toc-text">存取器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象拷贝"><span class="toc-text">对象拷贝</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制对象状态"><span class="toc-text">控制对象状态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#不可扩展对象-不能加，可改，可删"><span class="toc-text">不可扩展对象(不能加，可改，可删)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#密封的对象（不能加，删，可改）"><span class="toc-text">密封的对象（不能加，删，可改）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#冻结的对象（不能加，不能改，不能删）"><span class="toc-text">冻结的对象（不能加，不能改，不能删）</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>Javascript中Object是所有对象的祖宗，所有对象都继承自它，而它本身也是一个构造函数，可以直接生成或包装对象</p>
+<h2 id="Object对象的方法"><a href="#Object对象的方法" class="headerlink" title="Object对象的方法"></a>Object对象的方法</h2><p>当Object 被作为工具方法，而不是构造方法时，</p>
+</blockquote>
+<ul>
+<li>Object(arg)：包装方法，将非对象类型包装成一个对象</li>
+<li>Object.create(proto[, propertiesObject])：</li>
+<li>Object.getPrototypeOf(obj)：</li>
+</ul>
+<h2 id="Object实例对象的方法"><a href="#Object实例对象的方法" class="headerlink" title="Object实例对象的方法"></a>Object实例对象的方法</h2><p>必须区分“构造函数的方法”和“实例对象的方法”。</p>
+<ul>
+<li>valueOf()：返回当前对象对应的值。</li>
+<li>toString()：返回当前对象对应的字符串形式。<br>这个方法很有用，可以用于判断对象类型</li>
+<li>toLocalString()：返回当前对象对应的本地字符串形式。</li>
+<li>hasOwnProperty()：判断某个属性是否为当前对象自身的属性，还是继承自原型对象的属性。</li>
+<li>isPrototypeOf()：判断当前对象是否为另一个对象的原型。</li>
+<li>propertyIsEnumerable()：判断某个属性是否可枚举。</li>
+</ul>
+<h2 id="对象的属性模型"><a href="#对象的属性模型" class="headerlink" title="对象的属性模型"></a>对象的属性模型</h2><ul>
+<li>Object.getOwnPropertyDescriptor()：获取对象的属性的精确描述模型</li>
+</ul>
+<p>Object.defineProperty()<br>Object.defineProperties()<br>这两个方法有性能损耗，会拖慢执行速度，不宜大量使用。</p>
+<h3 id="可枚举性（enumerable）"><a href="#可枚举性（enumerable）" class="headerlink" title="可枚举性（enumerable）"></a>可枚举性（enumerable）</h3><p>如果一个属性的enumerable为false，下面三个操作不会取到该属性。</p>
+<blockquote>
+<p>for..in循环<br>Object.keys方法<br>JSON.stringify方法(有时可以利用这一点，为对象添加注释信息。)</p>
+</blockquote>
+<p>因此，enumerable可以用来设置“秘密”属性。<br>遍历对象属性方法</p>
+<ul>
+<li><code>Object.keys()</code> </li>
+<li><code>Object.getOwnPropertyNames()</code><br>一般情况下，几乎总是使用Object.keys方法，遍历数组的属性。</li>
+</ul>
+<h3 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var o =&#123;</span><br><span class="line">  $n : 5,</span><br><span class="line">  get next()&#123;return this.$n++ &#125;,</span><br><span class="line">  set next(n) &#123;</span><br><span class="line">    if (n &gt;= this.$n) this.$n = n;</span><br><span class="line">    else throw &quot;新的值必须大于当前值&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">o.next // 5</span><br><span class="line"></span><br><span class="line">o.next = 10;</span><br><span class="line">o.next // 10</span><br></pre></td></tr></table></figure>
+<p>利用存取器，可以实现数据对象与DOM对象的双向绑定。</p>
+<h3 id="对象拷贝"><a href="#对象拷贝" class="headerlink" title="对象拷贝"></a>对象拷贝</h3><p>对于简单属性，就直接拷贝，对于那些通过描述对象设置的属性，则使用Object.defineProperty方法拷贝。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var extend = function (to, from) &#123;</span><br><span class="line">  var descriptor = Object.getOwnPropertyDescriptor(from, property);</span><br><span class="line"></span><br><span class="line">  if (descriptor &amp;&amp; ( !descriptor.writable</span><br><span class="line">    || !descriptor.configurable</span><br><span class="line">    || !descriptor.enumerable</span><br><span class="line">    || descriptor.get</span><br><span class="line">    || descriptor.set)) &#123;</span><br><span class="line">    Object.defineProperty(to, property, descriptor);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    to[property] = from[property];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="控制对象状态"><a href="#控制对象状态" class="headerlink" title="控制对象状态"></a>控制对象状态</h2><p>JavaScript提供了三种方法，精确控制一个对象的读写状态，防止对象被改变。最弱一层的保护是preventExtensions，其次是seal，最强的freeze。</p>
+<h4 id="不可扩展对象-不能加，可改，可删"><a href="#不可扩展对象-不能加，可改，可删" class="headerlink" title="不可扩展对象(不能加，可改，可删)"></a>不可扩展对象(不能加，可改，可删)</h4><p>Object.preventExtensions方法可以使得一个对象无法再添加新的属性。可以用delete命令删除它的现有属性。<br>判断： Object.isExtensible(obj);</p>
+<h4 id="密封的对象（不能加，删，可改）"><a href="#密封的对象（不能加，删，可改）" class="headerlink" title="密封的对象（不能加，删，可改）"></a>密封的对象（不能加，删，可改）</h4><p>Object.seal方法使得一个对象既无法添加新属性，也无法删除旧属性。</p>
+<p>判断： Object.isSealed(obj);</p>
+<h4 id="冻结的对象（不能加，不能改，不能删）"><a href="#冻结的对象（不能加，不能改，不能删）" class="headerlink" title="冻结的对象（不能加，不能改，不能删）"></a>冻结的对象（不能加，不能改，不能删）</h4><p>Object.freeze方法可以使得一个对象无法添加新属性、无法删除旧属性、也无法改变属性的值，使得这个对象实际上变成了常量。<br>判断： Object.isFrozen(obj);</p>
+<p><strong>局限性</strong>: 需要注意的是，使用上面这些方法锁定对象的可写性，但是依然可以通过改变该对象的原型对象，来为它增加属性。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2016/03/09/Javascript/Javascript中的对象-Object/">https://caidewu.top/2016/03/09/Javascript/Javascript中的对象-Object/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/03/17/正则表达式整理/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">正则表达式整理</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/03/09/Javascript/Javascript中的prototype/">
+        <span class="next-text nav-default">Javascript中的原型</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="让你的Git使用上ssh协议授权">
+
+
+
+
+  <meta name="keywords" content="ssh, 记忆的话语">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2015/03/27/让你的Git使用上ssh协议授权/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 让你的Git使用上ssh协议授权 - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          让你的Git使用上ssh协议授权
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-03-27
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh原理"><span class="toc-text">ssh原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本的ssh配置"><span class="toc-text">基本的ssh配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多账号ssh配置"><span class="toc-text">多账号ssh配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#同一平台下的多账号配置"><span class="toc-text">同一平台下的多账号配置</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <ol>
+<li>ssh原理</li>
+<li>基本的ssh配置</li>
+<li>多账号ssh配置</li>
+<li>同一平台下的多账号配置</li>
+</ol>
+<h2 id="ssh原理"><a href="#ssh原理" class="headerlink" title="ssh原理"></a>ssh原理</h2><p><a href="http://zh.wikipedia.org/zh/Secure_Shell" target="_blank" rel="noopener">维基百科：ssh</a></p>
+<p>个人觉得最直接的好处就是Git每次提交时不用输密码<br><a id="more"></a></p>
+<h2 id="基本的ssh配置"><a href="#基本的ssh配置" class="headerlink" title="基本的ssh配置"></a>基本的ssh配置</h2><p><a href="https://gitcafe.com/GitCafe/Help/wiki/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%92%8C%E8%AE%BE%E7%BD%AE-Git#2%E5%88%9B%E5%BB%BA-ssh-%E7%A7%98%E9%92%A5" target="_blank" rel="noopener">GitCafe的帮助文档：如何安装和设置 Git</a></p>
+<p>简要总结一下</p>
+<ol>
+<li>打开ssh目录，一般是隐藏的 <code>cd ~/.ssh</code></li>
+<li><p>生成密钥文件,这样就会生成默认名字为<code>id_rsa</code>和<code>id_rsa.pub</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR_EMAIL@YOUREMAIL.COM&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>(说明：`YOUR_EMAIL@YOUREMAIL.COM`换成你自己的邮箱)
+</code></pre><ol>
+<li><p>打开公钥文件（id_rsa.pub），并把内容复制至代码托管平台上</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>进入 GitCafe --&gt;账户设置--&gt;SSH 公钥管理设置项，点击添加新公钥 按钮，在 Title 文本框中输入任意字符，在 Key 文本框粘贴刚才复制的公钥字符串，按保存按钮完成操作。
+</code></pre><ol>
+<li><p>测试</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@gitcafe.com</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>成功应该提示
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi xxxxxx! You&apos;ve successfully authenticated, but GitCafe does not provide shell access.</span><br></pre></td></tr></table></figure>
+</code></pre><p>这样就可以只用ssh协议的URL了,一般默认是https协议的，如图点击SSH即可切换：</p>
+<p><img src="/images/loading.jpeg" alt="设置clone路径" class="lazy-img" height="400" data-src="http://caidewu-blog-img.qiniudn.com/%E8%AE%BE%E7%BD%AEclone%E8%B7%AF%E5%BE%84.png"></p>
+<p>这样push代码时就不用再输密码了。</p>
+<h2 id="多账号ssh配置"><a href="#多账号ssh配置" class="headerlink" title="多账号ssh配置"></a>多账号ssh配置</h2><p>当你在Github或Gitcafe或Coding都有账号时</p>
+<p>假设已经有一个Gitcafe的密钥了，需要需要添加Github的</p>
+<ol>
+<li><p>生成指定名字的密钥</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR_EMAIL@YOUREMAIL.COM&quot; -f ~/.ssh/github</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>命名为github（这里叫什么随意，不要重名即可），然后会生成`github`和`github.pub`这两个文件
+</code></pre><ol>
+<li>打开公钥文件（id_rsa.pub），并把内容复制至代码托管平台上</li>
+<li><p>修改<code>config</code>文件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.ssh/config</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>添加如下代码
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Host github.com www.github.com</span><br><span class="line">IdentityFile ~/.ssh/github</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>测试</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>如果是coding的
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Host coding.net www.coding.net</span><br><span class="line">IdentityFile ~/.ssh/coding</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="同一平台下的多账号配置"><a href="#同一平台下的多账号配置" class="headerlink" title="同一平台下的多账号配置"></a>同一平台下的多账号配置</h3><p>如果有两个Github账号：</p>
+<ol>
+<li>也是按照 <strong>多账号设置</strong> 的方法进行第一第二步<br>这样你就已经正确的生成好了两个密钥，假设是：<code>github_a</code>和<code>github_b</code>分别对应的是你的账户aaaaaa和账户bbbbbb</li>
+<li><p>修改<code>config</code>文件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.ssh/config</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>添加如下代码
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   Host aaaaaa.github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/github_a</span><br><span class="line">Host bbbbbb.github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/github_b</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li>修改ssh URL<br> 例如原来的url是：<code>git@github.com:aaaaaa/xxxxxx.git</code><br> 需要改成：<code>git@aaaaaa.github.com:aaaaaa/xxxxxx.git</code><br> bbbbbb账号的修改也是如此</li>
+</ol>
+<p>最后补充一点（这部分Git熟悉的基本可以略过）：有些童鞋可能在设置这个多账号前已经配置了一个Github的ssh，然后把代码clone下来，配置多账号后，原来的代码就提交不上了。</p>
+<p>此时你进入 原来clone的代码文件夹下，执行 <code>git remote -v</code>，即可看到远处资源库路径</p>
+<p> 如：<code>git@github.com:aaaaaa/xxxxxx.git</code></p>
+<p>执行<code>git remote remove origin</code>删除该远程路径</p>
+<p>执行<code>git remote add origin git@aaaaaa.github.com:aaaaaa/xxxxxx.git</code>加上正确的远程仓库。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2015/03/27/让你的Git使用上ssh协议授权/">https://caidewu.top/2015/03/27/让你的Git使用上ssh协议授权/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/ssh/">ssh</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/03/30/来说说isNaN和isFinite/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">来说说isNaN和isFinite</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Javascript中的数组-Array">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2016/11/11/Javascript/Javascript中的数组-Array/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> Javascript中的数组-Array - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Javascript中的数组-Array
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-11-11
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#操作当前数组"><span class="toc-text">操作当前数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回新数组"><span class="toc-text">返回新数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回字符串"><span class="toc-text">返回字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#继承Object的方法"><span class="toc-text">继承Object的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES5新特性"><span class="toc-text">ES5新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#没有返回值"><span class="toc-text">没有返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回索引值"><span class="toc-text">返回索引值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回Boolean值"><span class="toc-text">返回Boolean值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回一个新的数组"><span class="toc-text">返回一个新的数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES2015新特性"><span class="toc-text">ES2015新特性</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>本文主要供平时健忘症发作的时候查阅, 详细的可以参考这个<a href="http://javascript.ruanyifeng.com/stdlib/array.html" target="_blank" rel="noopener">http://javascript.ruanyifeng.com/stdlib/array.html</a></p>
+</blockquote>
+<h2 id="操作当前数组"><a href="#操作当前数组" class="headerlink" title="操作当前数组"></a>操作当前数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pop()		// 从尾部去掉</span><br><span class="line">push()		// 从尾部加入</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">unshift(insert1,insert2…insertN)     //从头部加入，不支持ie</span><br><span class="line">shift()         //从头部删除</span><br><span class="line"></span><br><span class="line">sort(sortby)		// sortby非必填</span><br><span class="line"></span><br><span class="line">reverse()     //反转数组</span><br><span class="line"></span><br><span class="line">splice(index,howmany,insert1,insert2…insertN)</span><br><span class="line">// insert非必填</span><br><span class="line">// 返回值是切割出来新的数组，</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="返回新数组"><a href="#返回新数组" class="headerlink" title="返回新数组"></a>返回新数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">concat(arr1,arr2…..arrN);</span><br><span class="line"></span><br><span class="line">slice(start,end)		// start参数可以为负，即重数组尾部开始, end可以为任何</span><br></pre></td></tr></table></figure>
+<h2 id="返回字符串"><a href="#返回字符串" class="headerlink" title="返回字符串"></a>返回字符串</h2><p>join(分隔符)</p>
+<h2 id="继承Object的方法"><a href="#继承Object的方法" class="headerlink" title="继承Object的方法"></a>继承Object的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">toLocaleString()</span><br><span class="line">toString()</span><br><span class="line">valueOf()</span><br><span class="line">toSource() //仅Gecko内核支持</span><br></pre></td></tr></table></figure>
+<h2 id="ES5新特性"><a href="#ES5新特性" class="headerlink" title="ES5新特性"></a>ES5新特性</h2><h3 id="没有返回值"><a href="#没有返回值" class="headerlink" title="没有返回值"></a>没有返回值</h3><ul>
+<li>forEach    // 枚举数组，没有返回值，这个不用举例子了</li>
+</ul>
+<h3 id="返回索引值"><a href="#返回索引值" class="headerlink" title="返回索引值"></a>返回索引值</h3><ul>
+<li>indexOf    </li>
+<li>lastIndexOf: 过程和indexOf不一样，从后往前计算，结果是一样的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;];</span><br><span class="line">arr.indexOf(&apos;c&apos;); // 2</span><br></pre></td></tr></table></figure>
+<h3 id="返回Boolean值"><a href="#返回Boolean值" class="headerlink" title="返回Boolean值"></a>返回Boolean值</h3><ul>
+<li>some    // 任意一项为true，即返回true</li>
+<li>every    // 所有项都为true，才返回true</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// some方法 判断数组内的是否存在一个大于等于3的元素</span><br><span class="line">var arr = [1, 2, 3, 4, 5];</span><br><span class="line">var ret = arr.some(function (elem, index, arr) &#123;</span><br><span class="line">  return elem &gt;= 3;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(ret); // true</span><br><span class="line"></span><br><span class="line">// every方法 比较两个数组内容是否相同</span><br><span class="line">var arr1 = [1, 2, 3, 4, 5];</span><br><span class="line">var ret = arr.length === arr1.length &amp;&amp; </span><br><span class="line">arr.every(function (elem, index, arr) &#123;</span><br><span class="line">  return elem === arr1[index];</span><br><span class="line">&#125;);</span><br><span class="line">console.log(ret); // true</span><br></pre></td></tr></table></figure>
+<h3 id="返回一个新的数组"><a href="#返回一个新的数组" class="headerlink" title="返回一个新的数组"></a>返回一个新的数组</h3><ul>
+<li>reduce // 选代数组所有项，然后构建一个最终返回的值</li>
+<li>reduceRight</li>
+</ul>
+<p>reduce方法接收两个参数，第一个是回调函数，第二个参数则是指定返回的第一个prev是什么值</p>
+<p>例如：获取一个Number数组的和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[1,3,5,7].reduce(function(prev,current) &#123;</span><br><span class="line">	return prev + current;</span><br><span class="line">&#125;, 0);</span><br><span class="line"></span><br><span class="line">// 返回值为： 16</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.reduce(function(prev,cur,index,array)&#123;</span><br><span class="line">        return prev+cur;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>filter: 过滤符合回调中的条件的数组</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3, 4, 5].filter(function (elem) &#123;</span><br><span class="line">  return (elem &gt; 3);</span><br><span class="line">&#125;)</span><br><span class="line">// [4, 5]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>map: 对数组的所有成员依次执行回调函数，根据函数结果返回一个新数组。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3].map(function(elem, index, arr) &#123;</span><br><span class="line">  return elem * index;</span><br><span class="line">&#125;);</span><br><span class="line">// [0, 2, 6]</span><br></pre></td></tr></table></figure>
+<h2 id="ES2015新特性"><a href="#ES2015新特性" class="headerlink" title="ES2015新特性"></a>ES2015新特性</h2><p>// TODO</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2016/11/11/Javascript/Javascript中的数组-Array/">https://caidewu.top/2016/11/11/Javascript/Javascript中的数组-Array/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/12/使用node来完成文件的批处理/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">使用vinyl-fs替换node中的fs来完成文件的批处理</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/11/11/Flex布局学习笔记/">
+        <span class="next-text nav-default">Flex布局学习笔记</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

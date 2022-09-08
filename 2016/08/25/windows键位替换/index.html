@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="windows键位替换">
+
+
+
+
+  <meta name="keywords" content="键盘, 记忆的话语">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2016/08/25/windows键位替换/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> windows键位替换 - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          windows键位替换
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-08-25
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#先看几个简单示例"><span class="toc-text">先看几个简单示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解释下项目格式"><span class="toc-text">解释下项目格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#键盘扫描码"><span class="toc-text">键盘扫描码</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>Scancode Map 注册表项来实现键盘按键映射。</p>
+<p> 位于注册表的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout\</span><br></pre></td></tr></table></figure>
+<p>新建一个二进制值项：  “Scancode Map”</p>
+<p>这个项目可实现对键盘按键的映射。这里映射的意思可理解为“替换”，可将任意一键替换成其它键。</p>
+ <a id="more"></a>
+<h2 id="先看几个简单示例"><a href="#先看几个简单示例" class="headerlink" title="先看几个简单示例"></a>先看几个简单示例</h2><ol>
+<li>屏蔽左侧WIN键<br>“Scancode Map”=00,00,00,00,00,00,00,00,02,00,00,00,00,00,5B,E0,00,00,00,00 </li>
+<li>屏蔽右侧WIN键<br>“Scancode Map”=00,00,00,00,00,00,00,00,02,00,00,00,00,00,5C,E0,00,00,00,00</li>
+<li>屏蔽左右WIN两个键<br>“Scancode Map”=00,00,00,00,00,00,00,00,03,00,00,00,00,00,5B,E0,00,00,5C,E0,00,00,00,00</li>
+<li>替换左Crtl键为左Alt键<br>“Scancode Map”=00,00,00,00,00,00,00,00,02,00,00,00,38,00,1D,00,00,00,00,00 </li>
+<li>左Crtl键为左Alt键互换<br>“Scancode Map”=00,00,00,00,00,00,00,00,03,00,00,00,38,00,1D,00,1D,00,38,00,00,00,00,00 </li>
+</ol>
+<h2 id="解释下项目格式"><a href="#解释下项目格式" class="headerlink" title="解释下项目格式"></a>解释下项目格式</h2><p>以16进制表示，更分为五个部分，每个逗号之间都为一个字节。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Scancode Map&quot; = 00,00,00,00,00,00,00,00,   02,00,00,00,   01,00, 02,00,    00,00,00,00</span><br></pre></td></tr></table></figure>
+<p><strong>说明:</strong></p>
+<ol>
+<li>8个字节。 这是版本信息号。照例写就好。</li>
+<li>4个字节。 这是映射键的总数。按照二进制的读写规则，低位在左，高位在右。02 00 00 00 这个数实际就是：00 00 00 02 。从 02 开始，一个映射键是 02 ，两个是03 ，依次递加，十个是 0B 。</li>
+<li>2个字节。 表示替换后按键的”扫描码“。如：ESC 键的扫描码是 01 ，所以就表示 01 00 。再如 左Ctrl键扫描码是 1D 00, 而右Ctrl键是 1D E0 。</li>
+<li>2个字节。 表示原按键的”扫描码“。格式同上。</li>
+<li>以四个 00 结束。</li>
+</ol>
+<h2 id="键盘扫描码"><a href="#键盘扫描码" class="headerlink" title="键盘扫描码"></a>键盘扫描码</h2><p>以十六进制表示，分两部份，0X后面两个数是扫描码，最后两个数是 ASCII 码（可忽略）。如　0x011b          ESC　扫描码是01。</p>
+<table>
+<thead>
+<tr>
+<th>扫描码</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0X011B</td>
+<td>ESC </td>
+</tr>
+<tr>
+<td>0X3B00</td>
+<td>F1 </td>
+</tr>
+<tr>
+<td>0X3C00</td>
+<td>F2 </td>
+</tr>
+<tr>
+<td>0X3D00</td>
+<td>F3 </td>
+</tr>
+<tr>
+<td>0X3E00</td>
+<td>F4 </td>
+</tr>
+<tr>
+<td>0X3F00</td>
+<td>F5 </td>
+</tr>
+<tr>
+<td>0X4000</td>
+<td>F6 </td>
+</tr>
+<tr>
+<td>0X4100</td>
+<td>F7 </td>
+</tr>
+<tr>
+<td>0X4200</td>
+<td>F8 </td>
+</tr>
+<tr>
+<td>0X4300</td>
+<td>F9 </td>
+</tr>
+<tr>
+<td>0X4400</td>
+<td>F10</td>
+</tr>
+</tbody>
+</table>
+<p>主键盘区: </p>
+<table>
+<thead>
+<tr>
+<th>扫描码</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0X2960</td>
+<td>~ </td>
+</tr>
+<tr>
+<td>0X0231</td>
+<td>1 </td>
+</tr>
+<tr>
+<td>0X0332</td>
+<td>2 </td>
+</tr>
+<tr>
+<td>0X0433</td>
+<td>3 </td>
+</tr>
+<tr>
+<td>0X0534</td>
+<td>4 </td>
+</tr>
+<tr>
+<td>0X0635</td>
+<td>5 </td>
+</tr>
+<tr>
+<td>0X0736</td>
+<td>6 </td>
+</tr>
+<tr>
+<td>0X0837</td>
+<td>7 </td>
+</tr>
+<tr>
+<td>0X0938</td>
+<td>8 </td>
+</tr>
+<tr>
+<td>0X0A39</td>
+<td>9 </td>
+</tr>
+<tr>
+<td>0X0B30</td>
+<td>0 </td>
+</tr>
+<tr>
+<td>0X0C2D</td>
+<td>- </td>
+</tr>
+<tr>
+<td>0X0D3D</td>
+<td>= </td>
+</tr>
+<tr>
+<td>0X2B5C</td>
+<td>“ </td>
+</tr>
+<tr>
+<td>0X0E08</td>
+<td>退格键 </td>
+</tr>
+<tr>
+<td>0X0F09</td>
+<td>TAB </td>
+</tr>
+<tr>
+<td>0X1071</td>
+<td>Q </td>
+</tr>
+<tr>
+<td>0X1177</td>
+<td>W </td>
+</tr>
+<tr>
+<td>0X1265</td>
+<td>E </td>
+</tr>
+<tr>
+<td>0X1372</td>
+<td>R </td>
+</tr>
+<tr>
+<td>0X1474</td>
+<td>T </td>
+</tr>
+<tr>
+<td>0X1579</td>
+<td>Y </td>
+</tr>
+<tr>
+<td>0X1675</td>
+<td>U </td>
+</tr>
+<tr>
+<td>0X1769</td>
+<td>I </td>
+</tr>
+<tr>
+<td>0X186F</td>
+<td>O </td>
+</tr>
+<tr>
+<td>0X1970</td>
+<td>P </td>
+</tr>
+<tr>
+<td>0X1A5B</td>
+<td>[ </td>
+</tr>
+<tr>
+<td>0X1B5D</td>
+<td>] </td>
+</tr>
+<tr>
+<td>0X1E61</td>
+<td>A </td>
+</tr>
+<tr>
+<td>0X1F73</td>
+<td>S </td>
+</tr>
+<tr>
+<td>0X2064</td>
+<td>D </td>
+</tr>
+<tr>
+<td>0X2166</td>
+<td>F </td>
+</tr>
+<tr>
+<td>0X2267</td>
+<td>G </td>
+</tr>
+<tr>
+<td>0X2368</td>
+<td>H </td>
+</tr>
+<tr>
+<td>0X246A</td>
+<td>J </td>
+</tr>
+<tr>
+<td>0X256B</td>
+<td>K </td>
+</tr>
+<tr>
+<td>0X266C</td>
+<td>L </td>
+</tr>
+<tr>
+<td>0X273B</td>
+<td>; </td>
+</tr>
+<tr>
+<td>0X2827</td>
+<td>‘ </td>
+</tr>
+<tr>
+<td>0X1C0D</td>
+<td>回车 </td>
+</tr>
+<tr>
+<td>0X2C7A</td>
+<td>Z </td>
+</tr>
+<tr>
+<td>0X2D78</td>
+<td>X </td>
+</tr>
+<tr>
+<td>0X2E63</td>
+<td>C </td>
+</tr>
+<tr>
+<td>0X2F76</td>
+<td>V </td>
+</tr>
+<tr>
+<td>0X3062</td>
+<td>B </td>
+</tr>
+<tr>
+<td>0X316E</td>
+<td>N </td>
+</tr>
+<tr>
+<td>0X326D</td>
+<td>M </td>
+</tr>
+<tr>
+<td>0X332C</td>
+<td>, </td>
+</tr>
+<tr>
+<td>0X342E</td>
+<td>. </td>
+</tr>
+<tr>
+<td>0X352F</td>
+<td>/ </td>
+</tr>
+<tr>
+<td>0X3920</td>
+<td>空格键</td>
+</tr>
+</tbody>
+</table>
+<p>右边数字键盘: </p>
+<table>
+<thead>
+<tr>
+<th>扫描码</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0X5200</td>
+<td>INSERT </td>
+</tr>
+<tr>
+<td>0X4700</td>
+<td>HOME </td>
+</tr>
+<tr>
+<td>0X4900</td>
+<td>PAGE UP </td>
+</tr>
+<tr>
+<td>0X5300</td>
+<td>DELETE </td>
+</tr>
+<tr>
+<td>0X4F00</td>
+<td>END </td>
+</tr>
+<tr>
+<td>0X5100</td>
+<td>PAGEDOWN </td>
+</tr>
+<tr>
+<td>0X4800</td>
+<td>上箭头 </td>
+</tr>
+<tr>
+<td>0X4B00</td>
+<td>左箭头 </td>
+</tr>
+<tr>
+<td>0X5000</td>
+<td>下箭头 </td>
+</tr>
+<tr>
+<td>0X4D00</td>
+<td>右箭头 </td>
+</tr>
+<tr>
+<td>0X352F</td>
+<td>/ </td>
+</tr>
+<tr>
+<td>0X372A</td>
+<td>* </td>
+</tr>
+<tr>
+<td>0X4A2D</td>
+<td>- (注意,这是数字键盘的)</td>
+</tr>
+<tr>
+<td>0X4737</td>
+<td>7 </td>
+</tr>
+<tr>
+<td>0X4838</td>
+<td>8 </td>
+</tr>
+<tr>
+<td>0X4939</td>
+<td>9 </td>
+</tr>
+<tr>
+<td>0X4B34</td>
+<td>4 </td>
+</tr>
+<tr>
+<td>0X4C35</td>
+<td>5 </td>
+</tr>
+<tr>
+<td>0X4D36</td>
+<td>6 </td>
+</tr>
+<tr>
+<td>0X4E2B</td>
+<td>+ </td>
+</tr>
+<tr>
+<td>0X4F31</td>
+<td>1 </td>
+</tr>
+<tr>
+<td>0X5032</td>
+<td>2 </td>
+</tr>
+<tr>
+<td>0X5133</td>
+<td>3 </td>
+</tr>
+<tr>
+<td>0X5230</td>
+<td>0 </td>
+</tr>
+<tr>
+<td>0X532E</td>
+<td>DEL</td>
+</tr>
+</tbody>
+</table>
+<p>左 Crtl 扫描码是 1D ，表示 1D 00 。 右 Ctrl 键扫描码是 E01D，表示 1D E0。</p>
+<p>左 ALT 扫描码是 38 ，表示 38 00 。 右 ALT 键扫描码是 E0 38，表示 38 E0。</p>
+<p>左 Shift 扫描码是 2A ，表示 2A 00 。 右 Shift 键扫描码是 36 ，表示 36 00</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2016/08/25/windows键位替换/">https://caidewu.top/2016/08/25/windows键位替换/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/键盘/">键盘</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/09/08/前端代码风格/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">前端代码风格</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/08/18/zepto的extend/">
+        <span class="next-text nav-default">zepto的extend</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

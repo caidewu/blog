@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="在Mac中统计代码行数，find的命令怎么用">
+
+
+
+
+  <meta name="keywords" content="shell, 记忆的话语">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2016/12/14/在Mac中统计代码行数/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 在Mac中统计代码行数，find的命令怎么用 - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          在Mac中统计代码行数，find的命令怎么用
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-14
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#先来看怎么用"><span class="toc-text">先来看怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#仔细看一下"><span class="toc-text">仔细看一下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wc"><span class="toc-text">wc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-text">find</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#忽略某个子目录"><span class="toc-text">忽略某个子目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#忽略大小写"><span class="toc-text">忽略大小写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#匹配文件路径或文件"><span class="toc-text">匹配文件路径或文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则匹配"><span class="toc-text">正则匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#根据文件大小来搜索"><span class="toc-text">根据文件大小来搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#根据文件性质来分类"><span class="toc-text">根据文件性质来分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于目录深度搜索"><span class="toc-text">基于目录深度搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#要列出所有长度为零的文件"><span class="toc-text">要列出所有长度为零的文件</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h3 id="先来看怎么用"><a href="#先来看怎么用" class="headerlink" title="先来看怎么用"></a>先来看怎么用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 统计文件类型是`*.m`,`*.mm`,`*.cpp`,`*.h`,`*.rss`的文件代码行数</span><br><span class="line">find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.cpp&quot; -or -name &quot;*.h&quot; -or -name &quot;*.rss&quot; &quot;)&quot; | xargs wc -l</span><br><span class="line"> </span><br><span class="line"># 统计js文件行数</span><br><span class="line">find . &quot;(&quot; -name &quot;*.js&quot; &quot;)&quot; | xargs wc -l</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="仔细看一下"><a href="#仔细看一下" class="headerlink" title="仔细看一下"></a>仔细看一下</h3><p>这条命令主要包含两部分，</p>
+<ul>
+<li>find</li>
+<li>wc</li>
+</ul>
+<p>find是过滤出想要统计的文件，wc是统计，他们中间通过<code>|</code>管道连接</p>
+<p><strong>xargs</strong>：由于很多命令不支持<code>|</code>管道来传递参数</p>
+<p>xargs 可以读入 stdin 的资料，并且以空白字元或断行字元作为分辨，将 stdin 的资料分隔成为 arguments 。</p>
+<p><strong>find .</strong>: 列出当前目录及子目录下所有文件和文件夹 </p>
+<p>来自: <a href="http://man.linuxde.net/find" target="_blank" rel="noopener">http://man.linuxde.net/find</a></p>
+<h3 id="wc"><a href="#wc" class="headerlink" title="wc"></a>wc</h3><blockquote>
+<p><a href="http://man.linuxde.net/wc" target="_blank" rel="noopener">http://man.linuxde.net/wc</a></p>
+</blockquote>
+<ul>
+<li>-c或–bytes或——chars：只显示Bytes数；</li>
+<li>-l或——lines：只显示列数； </li>
+<li>-w或——words：只显示字数。</li>
+</ul>
+<p>如果不带参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  public  &gt;wc index.html</span><br><span class="line">     117     627   14703 index.html</span><br><span class="line">	  行数  Bytes数  字数</span><br></pre></td></tr></table></figure>
+<p>来自: <a href="http://man.linuxde.net/wc" target="_blank" rel="noopener">http://man.linuxde.net/wc</a></p>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><blockquote>
+<p><a href="http://man.linuxde.net/find" target="_blank" rel="noopener">http://man.linuxde.net/find</a></p>
+</blockquote>
+<h4 id="忽略某个子目录"><a href="#忽略某个子目录" class="headerlink" title="忽略某个子目录"></a>忽略某个子目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . &quot;./node_modules&quot; -prune</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-o</code>: 等同<code>-or</code>， 或的意思，类似的条件判断还有与<code>-a</code>,非<code>!</code> </li>
+</ul>
+<h4 id="忽略大小写"><a href="#忽略大小写" class="headerlink" title="忽略大小写"></a>忽略大小写</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">find /home -iname &quot;HelloWorld.txt&quot;</span><br><span class="line"></span><br><span class="line">可以匹配上</span><br><span class="line">helloworld.txt</span><br><span class="line">HELLOWORLD.txt</span><br><span class="line">Helloworld.TXT</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h4 id="匹配文件路径或文件"><a href="#匹配文件路径或文件" class="headerlink" title="匹配文件路径或文件"></a>匹配文件路径或文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 文件夹或文件名包含local</span><br><span class="line">find /usr/ -path &quot;*local*&quot;</span><br><span class="line"></span><br><span class="line"># 文件夹包含local</span><br><span class="line">find /usr/ -path &quot;*/local/*&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>-path</strong>: 指定字符串作为寻找目录的关键字</li>
+</ul>
+<h4 id="正则匹配"><a href="#正则匹配" class="headerlink" title="正则匹配"></a>正则匹配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -regex &quot;.*\(\.txt\|\.pdf\)$&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="根据文件大小来搜索"><a href="#根据文件大小来搜索" class="headerlink" title="根据文件大小来搜索"></a>根据文件大小来搜索</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 搜索大于1G的文件</span><br><span class="line">find . -type f -size +1G</span><br><span class="line"></span><br><span class="line">find . -type f -size -1k</span><br></pre></td></tr></table></figure>
+<ul>
+<li>b —— 块（512字节） </li>
+<li>c —— 字节 </li>
+<li>w —— 字（2字节） </li>
+<li>k —— 千字节 </li>
+<li>M —— 兆字节 </li>
+<li>G —— 吉字节</li>
+</ul>
+<p>#### </p>
+<h4 id="根据文件性质来分类"><a href="#根据文件性质来分类" class="headerlink" title="根据文件性质来分类"></a>根据文件性质来分类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 显示所有目录</span><br><span class="line">find . -type d</span><br></pre></td></tr></table></figure>
+<ul>
+<li>f 普通文件 </li>
+<li>l 符号连接 </li>
+<li>d 目录 </li>
+<li>c 字符设备 </li>
+<li>b 块设备 </li>
+<li>s 套接字 </li>
+<li>p Fifo</li>
+</ul>
+<h4 id="基于目录深度搜索"><a href="#基于目录深度搜索" class="headerlink" title="基于目录深度搜索"></a>基于目录深度搜索</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 向下深度限制为3</span><br><span class="line">find . -maxdepth 3 -type f</span><br><span class="line"></span><br><span class="line"># 向下深度超过2的文件</span><br><span class="line">find . -mindepth 2 -type f</span><br></pre></td></tr></table></figure>
+<h4 id="要列出所有长度为零的文件"><a href="#要列出所有长度为零的文件" class="headerlink" title="要列出所有长度为零的文件"></a>要列出所有长度为零的文件</h4><p>来自: <a href="http://man.linuxde.net/find" target="_blank" rel="noopener">http://man.linuxde.net/find</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -empty</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2016/12/14/在Mac中统计代码行数/">https://caidewu.top/2016/12/14/在Mac中统计代码行数/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/shell/">shell</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/16/详细说一下这道js面试题/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">详细说一下这道js面试题</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/13/当网管系列/华为交换机配置/">
+        <span class="next-text nav-default">华为交换机配置</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

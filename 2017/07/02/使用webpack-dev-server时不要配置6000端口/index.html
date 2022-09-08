@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="使用webpack-dev-server时不要配置6000端口">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2017/07/02/使用webpack-dev-server时不要配置6000端口/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 使用webpack-dev-server时不要配置6000端口 - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          使用webpack-dev-server时不要配置6000端口
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-02
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>今天在搭建一个新项目，然后使用chrome始终无法访问，反复研究配置文件也没发现有什么不对，仔细看chrome的报错</p>
+<blockquote>
+<p>网址为 <a href="http://localhost:6000/" target="_blank" rel="noopener">http://localhost:6000/</a> 的网页可能暂时无法连接，或者它已永久性地移动到了新网址。<br>ERR_UNSAFE_PORT</p>
+</blockquote>
+<p>一开始我以为是6000端口被占用了，</p>
+<p>使用<code>lsof -i:6000</code>并没有发现有应用占用了6000端口，</p>
+<p>仔细再看报错信息，其实重点是<strong><code>ERR_UNSAFE_PORT</code></strong>,</p>
+<p>难道是浏览器禁用了6000端口？</p>
+<p>于是修改了一下webpack-dev-server指定的端口为6001，可以正常访问了</p>
+<a id="more"></a>
+<p>那么问题来了，chrome到底禁用了哪些端口,google了一下有如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">1,    // tcpmux</span><br><span class="line">  7,    // echo</span><br><span class="line">  9,    // discard</span><br><span class="line">  11,   // systat</span><br><span class="line">  13,   // daytime</span><br><span class="line">  15,   // netstat</span><br><span class="line">  17,   // qotd</span><br><span class="line">  19,   // chargen</span><br><span class="line">  20,   // ftp data</span><br><span class="line">  21,   // ftp access</span><br><span class="line">  22,   // ssh</span><br><span class="line">  23,   // telnet</span><br><span class="line">  25,   // smtp</span><br><span class="line">  37,   // time</span><br><span class="line">  42,   // name</span><br><span class="line">  43,   // nicname</span><br><span class="line">  53,   // domain</span><br><span class="line">  77,   // priv-rjs</span><br><span class="line">  79,   // finger</span><br><span class="line">  87,   // ttylink</span><br><span class="line">  95,   // supdup</span><br><span class="line">  101,  // hostriame</span><br><span class="line">  102,  // iso-tsap</span><br><span class="line">  103,  // gppitnp</span><br><span class="line">  104,  // acr-nema</span><br><span class="line">  109,  // pop2</span><br><span class="line">  110,  // pop3</span><br><span class="line">  111,  // sunrpc</span><br><span class="line">  113,  // auth</span><br><span class="line">  115,  // sftp</span><br><span class="line">  117,  // uucp-path</span><br><span class="line">  119,  // nntp</span><br><span class="line">  123,  // NTP</span><br><span class="line">  135,  // loc-srv /epmap</span><br><span class="line">  139,  // netbios</span><br><span class="line">  143,  // imap2</span><br><span class="line">  179,  // BGP</span><br><span class="line">  389,  // ldap</span><br><span class="line">  465,  // smtp+ssl</span><br><span class="line">  512,  // print / exec</span><br><span class="line">  513,  // login</span><br><span class="line">  514,  // shell</span><br><span class="line">  515,  // printer</span><br><span class="line">  526,  // tempo</span><br><span class="line">  530,  // courier</span><br><span class="line">  531,  // chat</span><br><span class="line">  532,  // netnews</span><br><span class="line">  540,  // uucp</span><br><span class="line">  556,  // remotefs</span><br><span class="line">  563,  // nntp+ssl</span><br><span class="line">  587,  // stmp?</span><br><span class="line">  601,  // ??</span><br><span class="line">  636,  // ldap+ssl</span><br><span class="line">  993,  // ldap+ssl</span><br><span class="line">  995,  // pop3+ssl</span><br><span class="line">  2049, // nfs</span><br><span class="line">  3659, // apple-sasl / PasswordServer</span><br><span class="line">  4045, // lockd</span><br><span class="line">  6000, // X11</span><br><span class="line">  6665, // Alternate IRC [Apple addition]</span><br><span class="line">  6666, // Alternate IRC [Apple addition]</span><br><span class="line">  6667, // Standard IRC [Apple addition]</span><br><span class="line">  6668, // Alternate IRC [Apple addition]</span><br><span class="line">  6669, // Alternate IRC [Apple addition]</span><br></pre></td></tr></table></figure>
+<p>通常我们在本地搭建开发环境时通常使用4位数的整数作为端口，比如3000，8000，8080…，所以上面这些被禁用端口就是6000被误用的可能性比较大，记住6000是x11用的端口以后避开就行了</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://superuser.com/questions/188058/which-ports-are-considered-unsafe-on-chrome" target="_blank" rel="noopener">https://superuser.com/questions/188058/which-ports-are-considered-unsafe-on-chrome</a></li>
+<li><a href="https://www.zhihu.com/question/27939248?sort=created" target="_blank" rel="noopener">X11 是什么？</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2017/07/02/使用webpack-dev-server时不要配置6000端口/">https://caidewu.top/2017/07/02/使用webpack-dev-server时不要配置6000端口/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/02/12/解决在Mac中ssh登录后闲置时间过长而断开连接/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">解决在Mac中ssh登录后闲置时间过长而断开连接</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/06/24/webpack热更新延迟问题/">
+        <span class="next-text nav-default">webpack热更新延迟问题</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

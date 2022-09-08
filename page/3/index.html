@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="caidewu, 蔡德伍, Javascript, HTML5, 前端, Mac, iOS, Windows">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/page/3/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts">
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/09/08/前端代码风格/">前端代码风格</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-09-08
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>通过分析github代码库总结出来的工程师代码书写习惯,参考来源：http://materliu.github.io/code-guide/</p>
+          <div class="read-more">
+            <a href="/2016/09/08/前端代码风格/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/08/25/windows键位替换/">windows键位替换</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-08-25
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>Scancode Map 注册表项来实现键盘按键映射。</p>
+<p> 位于注册表的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout\</span><br></pre></td></tr></table></figure>
+<p>新建一个二进制值项：  “Scancode Map”</p>
+<p>这个项目可实现对键盘按键的映射。这里映射的意思可理解为“替换”，可将任意一键替换成其它键。</p>
+          <div class="read-more">
+            <a href="/2016/08/25/windows键位替换/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/08/18/zepto的extend/">zepto的extend</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-08-18
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h3 id="Zepto的extend-API"><a href="#Zepto的extend-API" class="headerlink" title="Zepto的extend API"></a>Zepto的extend API</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$.extend(target, [source, [source2, ...]])  ⇒ target</span><br><span class="line">$.extend(true, target, [source, ...])  ⇒ target</span><br></pre></td></tr></table></figure>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><ul>
+<li><code>source</code> 需要被复制的对象，可以多个</li>
+<li><code>target</code> 为需要被返回的对象，可以为空对象，但不能是null,当target为空时，返回source</li>
+<li><code>true</code> 深拷贝</li>
+</ul>
+          <div class="read-more">
+            <a href="/2016/08/18/zepto的extend/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/08/02/ES2015 Module/">ES2015 Module</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-08-02
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>ES2015 Module是ES2015非常重要的新特性，它意味着JS真正意义在语言层面对模块化的支持，但是作为JS应用场景最广也是最早的浏览器端，并没有任何浏览器实现对模块化的支持，因为这需要时间，所以，现在想要用到这个特性需要借助Babel的支持，即使在未来有浏览器提供了原生的模块化加载，但是为了考虑兼容性，Babel还是会长期存在的</p>
+          <div class="read-more">
+            <a href="/2016/08/02/ES2015 Module/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/07/21/Mac批量设置视频文件默认打开方式为Movist/">Mac批量设置视频文件默认打开方式为Movist</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-07-21
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="Mac批量设置视频文件默认打开方式为Movist"><a href="#Mac批量设置视频文件默认打开方式为Movist" class="headerlink" title="Mac批量设置视频文件默认打开方式为Movist"></a>Mac批量设置视频文件默认打开方式为Movist</h1><p>在Mac中播放视频软件最好的，应当属于Movist，但是Movist中我并没有找到将其作为视频的默认播放器设置</p>
+<p>而Mac单独设置一类文件作为默认打开方式可以这样做：</p>
+<blockquote>
+<p>文件名右键 -&gt; 显示简介 -&gt; 打开方式 -&gt; 全部更改</p>
+</blockquote>
+<p>但是，这样一个个类型的修改比较麻烦，有没有更好的办法？</p>
+<p>当然是有的    </p>
+<h2 id="快速配置"><a href="#快速配置" class="headerlink" title="快速配置"></a>快速配置</h2><h3 id="安装duti"><a href="#安装duti" class="headerlink" title="安装duti"></a>安装duti</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install duti</span><br></pre></td></tr></table></figure>
+<p>如果brew都没有，执行下面命令安装brew</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="配置常见视频使用Movist打开"><a href="#配置常见视频使用Movist打开" class="headerlink" title="配置常见视频使用Movist打开"></a>配置常见视频使用Movist打开</h3><p>不需要知道原理的可以直接打开终端（shell），执行一下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">duti -s com.movist.movist public.movie viewer</span><br><span class="line">duti -s com.movist.movist public.avi viewer</span><br><span class="line">duti -s com.movist.movist public.mpeg viewer</span><br><span class="line">duti -s com.movist.movist public.mpeg-4 viewer</span><br><span class="line">duti -s com.movist.movist public.3gpp viewer</span><br><span class="line">duti -s com.movist.movist public.3gpp2 viewer</span><br><span class="line">duti -s com.movist.movist com.apple.quicktime-movie viewer</span><br><span class="line">duti -s com.movist.movist com.real.realmedia viewer</span><br><span class="line">duti -s com.movist.movist com.adobe.flash.video viewer</span><br></pre></td></tr></table></figure>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="Bundle-ID"><a href="#Bundle-ID" class="headerlink" title="Bundle ID"></a>Bundle ID</h3><p>Bundle ID (应用标识符)) 是 iOS 或者 Mac 应用的唯一标识.</p>
+<p><code>com.movist.movist</code>就是Movist的Bundle ID</p>
+<p>那么，怎么看一个应用的Bundle ID ？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">osascript -e &apos;id of app &quot;Finder&quot;&apos;</span><br><span class="line"></span><br><span class="line">osascript -e &apos;id of app &quot;Movist&quot;&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="UTI（Uniform-Type-Identifiers）"><a href="#UTI（Uniform-Type-Identifiers）" class="headerlink" title="UTI（Uniform Type Identifiers）"></a>UTI（Uniform Type Identifiers）</h3><p>有了Bundle ID，还需要UTI，其实可以理解为文件类型标示，类似后缀名，但不是后缀名，苹果系统是通过文件的UTI关联的是那个应用，然后会通过关联的应用来打开这个文件，当然后缀名和这个东西也是有某种关联关系的，这里暂不讨论</p>
+<p><strong>怎么看？</strong></p>
+<ul>
+<li>苹果的网站上有列出一些</li>
+</ul>
+<blockquote>
+<p><a href="https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html" target="_blank" rel="noopener">https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html</a></p>
+</blockquote>
+<ul>
+<li>通过mdls命令查看,看</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Movies  &gt;mdls IMG_2436.MP4</span><br></pre></td></tr></table></figure>
+<p>kMDItemContentType，kMDItemContentTypeTree就是UTI，kMDItemContentType优先</p>
+<h3 id="开始实践"><a href="#开始实践" class="headerlink" title="开始实践"></a>开始实践</h3><p>简单说，就是通过duti命令来查看和关联文件和打开应用</p>
+<h4 id="查看UTI关联的应用："><a href="#查看UTI关联的应用：" class="headerlink" title="查看UTI关联的应用："></a>查看UTI关联的应用：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">duti -d public.movie</span><br></pre></td></tr></table></figure>
+<h4 id="配置一个public-movie类型的文件关联movist"><a href="#配置一个public-movie类型的文件关联movist" class="headerlink" title="配置一个public.movie类型的文件关联movist"></a>配置一个public.movie类型的文件关联movist</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">duti -s com.movist.movist public.movie viewer</span><br></pre></td></tr></table></figure>
+<p><strong>详细参数说明</strong></p>
+<ul>
+<li>-s : 选项会让 duti 从命令行读参数.</li>
+<li>-x ext : 选项会让 duti 输出参数中扩展名对应的默认应用</li>
+<li>-d uti : 打印 UTI 的默认应用.</li>
+<li>-l uti : 打印 UTI 的所有可用应用.</li>
+<li>-V: 打印版本.</li>
+<li>-v: 详细输出.</li>
+<li>-h: 帮助.</li>
+</ul>
+<h4 id="通过读取文件配置"><a href="#通过读取文件配置" class="headerlink" title="通过读取文件配置"></a>通过读取文件配置</h4><p>使用 -s 选项, 从命令行读取参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">duti -s com.apple.Safari public.html all</span><br><span class="line">duti -s com.apple.Finder ftp</span><br></pre></td></tr></table></figure>
+<p>如果配置项特别多可以把配置保存到文本文件中，方面以后编辑管理，格式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">com.movist.movist public.movie viewer</span><br><span class="line">com.movist.movist public.avi viewer</span><br><span class="line">com.movist.movist public.mpeg viewer</span><br><span class="line">com.movist.movist public.mpeg-4 viewer</span><br><span class="line">com.movist.movist com.microsoft.win dows-​media-wm viewer</span><br><span class="line">com.movist.movist com.microsoft.windows-​media-wmv viewer</span><br><span class="line">com.movist.movist com.microsoft.windows-​media-wmp viewer</span><br><span class="line">com.movist.movist public.3gpp viewer</span><br><span class="line">com.movist.movist public.3gpp2 viewer</span><br><span class="line">com.movist.movist com.apple.quicktime-movie viewer</span><br><span class="line">com.movist.movist com.real.realmedia viewer</span><br><span class="line">com.movist.movist com.adobe.flash.video viewer</span><br></pre></td></tr></table></figure>
+<p>比如就保存叫 <code>duti-files</code>, 然后执行duti命令，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">duti duti-files</span><br></pre></td></tr></table></figure>
+<p>即可完成格式的关联</p>
+<h2 id="其他文件格式关联"><a href="#其他文件格式关联" class="headerlink" title="其他文件格式关联"></a>其他文件格式关联</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># *.md</span><br><span class="line">duti -s com.uranusjr.macdown net.daringfireball.markdown all</span><br><span class="line"></span><br><span class="line"># 音频格式关联</span><br><span class="line"># *.flac				</span><br><span class="line">duti -s com.coppertino.Vox dyn.ah62d4rv4ge80q5dbqq all</span><br><span class="line"></span><br><span class="line"># *.mp3</span><br><span class="line">duti -s com.coppertino.Vox public.mp3 all</span><br><span class="line"></span><br><span class="line"># *.m4a</span><br><span class="line">duti -s com.coppertino.Vox com.apple.m4a-audio all</span><br><span class="line"></span><br><span class="line"># *.ape</span><br><span class="line">duti -s com.coppertino.Vox dyn.ah62d4rv4ge80c6df all</span><br><span class="line"></span><br><span class="line"># *.cue</span><br><span class="line">duti -s com.coppertino.Vox com.coppertino.vox.cue all</span><br><span class="line"></span><br><span class="line"># *.wav</span><br><span class="line">duti -s com.coppertino.Vox com.microsoft.waveform-audio all</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/07/13/innerHTML vs createElement/">innerHTML vs createElement</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-07-13
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="innerHTML-vs-createElement"><a href="#innerHTML-vs-createElement" class="headerlink" title="innerHTML vs createElement"></a>innerHTML vs createElement</h2><p>生成Dom的两种方式，孰优孰劣呢？</p>
+<p>就我们的经验看来，innerHTML这种采用字符串拼接生成dom的方式似乎更加方便，并且效率更高。但是那原生的createElement又有什么优势呢？<br>以下，优势观点来自于stack overflow的言论，翻译的也不一点准确，欢迎探讨。</p>
+<ul>
+<li>createElement，当元素插入后仍然保留对dom元素的指针。而innerHTML插入后，并没有对dom元素的指针，你需要再通过getElementById重新选取。</li>
+<li>createElement能够获得事件处理函数，而innerHTML生成的新dom无法获得原先设置的事件处理函数。</li>
+<li>某些情况下，createElement更加快速。如果你需要反复操作字符串，在每次处理后再次插入。每次插入都将进行解析与制作dom，在性能上会很差。</li>
+<li>可读性与可维护上createElement会优秀一些</li>
+</ul>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/06/30/zepto通过on事件绑定不同方式的区别/">zepto通过on事件绑定不同方式的区别</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-06-30
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>###zepto事件绑定的方式的区别</p>
+<ul>
+<li>方式1：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;body&apos;).on(&apos;type&apos;, &apos;selector&apos;, callback)</span><br><span class="line">	.on(&apos;type&apos;, &apos;selector&apos;, callback)</span><br><span class="line">		.on(&apos;type&apos;, &apos;selector&apos;, callback);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方式2:    </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;selector1&apos;).on(&apos;type&apos;, callback)</span><br><span class="line">$(&apos;selector2&apos;).on(&apos;type&apos;, callback)</span><br></pre></td></tr></table></figure>
+<p>说明: selector1和selector2都选择了指定元素</p>
+<p>方式1的执行比方式2优先！<br>而且方式2中的某个回调执行了<code>return false;</code> 方式1的事件将不会被触发了</p>
+<p>原因：<br>难道方式一的绑定是异步的？？？</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/04/27/Linux用户体系/">Linux用户体系</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-04-27
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>Linux用 户分为：</p>
+<ul>
+<li>拥有者</li>
+<li>组群(Group)</li>
+<li>其他（other）</li>
+</ul>
+<p>Linux系统中，预设的情況下，系统中所有的帐号与一般身份使用者，以及root的相关信息，都是记录在<code>/etc/passwd</code>文件中。每个人的密码则是记录在<code>/etc/shadow</code>文件下。 此外，所有的组群名称记录在<code>/etc/group</code>內！ </p>
+<p>linux文件的用户权限的分析图<br><img src="/images/loading.jpeg" alt="" class="lazy-img" height="400" data-src="http://man.linuxde.net/wp-content/uploads/2013/11/chmod.gif"></p>
+          <div class="read-more">
+            <a href="/2016/04/27/Linux用户体系/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/03/17/正则表达式整理/">正则表达式整理</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-17
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>某些正则并不能保证精确匹配，仅供参考。</p>
+          <div class="read-more">
+            <a href="/2016/03/17/正则表达式整理/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/03/09/Javascript/Javascript中的对象-Object/">Javascript中的对象-Object</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>Javascript中Object是所有对象的祖宗，所有对象都继承自它，而它本身也是一个构造函数，可以直接生成或包装对象</p>
+          <div class="read-more">
+            <a href="/2016/03/09/Javascript/Javascript中的对象-Object/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+      <a class="prev" href="/page/2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">上一页</span>
+      </a>
+    
+    
+      <a class="next" href="/page/4/">
+        <span class="next-text">下一页</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

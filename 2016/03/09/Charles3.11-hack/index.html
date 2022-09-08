@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="关于Charles3.11的破解过程，本文所有操作均在Mac OS X EI Capitan下进行">
+
+
+
+
+  <meta name="keywords" content="hack, 记忆的话语">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2016/03/09/Charles3.11-hack/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> Charles3.11-hack - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Charles3.11-hack
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#先上结果"><span class="toc-text">先上结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过程"><span class="toc-text">过程</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>关于Charles3.11的破解过程，本文所有操作均在Mac OS X EI Capitan下进行</p>
+</blockquote>
+<h2 id="先上结果"><a href="#先上结果" class="headerlink" title="先上结果"></a>先上结果</h2><p>链接: <a href="http://pan.baidu.com/s/1o64C1ku" target="_blank" rel="noopener">http://pan.baidu.com/s/1o64C1ku</a> 密码: q9av</p>
+<blockquote>
+<p>前提: 首先版本得是Charles 3.11.1，理论说3.11也是可以的，3.10以下的不用试了</p>
+</blockquote>
+<ol>
+<li>将jar包下载下来后，将名字改成charles.jar</li>
+<li>打开应用程序文件夹，找到Charles - 显示包内容 - Contents - Java </li>
+<li>找到charles.jar,替换之即可</li>
+</ol>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>本来用的3.9.3好好的，但是系统升级10.11后，出现了一些这样的情况<br><br><img src="/images/loading.jpeg" alt="1" class="lazy-img" height="400" data-src="http://7fvd05.com1.z0.glb.clouddn.com/hacking-charles-11.png"></p>
+<p>每次滚动代码时就变成这样，<br><br><br>忍受了一个多月后，终于决定要升级<br>去官网下了目前的最新版，3.11.1<br>然后天真的想去下个序列号或者什么注册机破解就ok了，<br>于是我百度了一下<br>然后是这样的</p>
+<p><img src="/images/loading.jpeg" alt="" class="lazy-img" height="400" data-src="http://7fvd05.com1.z0.glb.clouddn.com/hacking-charles-12.png"></p>
+<p><br><br>大概了解到的情况是需要替换<code>charles.jar</code>这个jar包就可以破解，<br>然后我一个个下下来，一个个试<br>好吧，结果中没有一个是3.11.1可用的<br><br><br>只能google一下，<br>找到一篇3.10.1的破解教程，<a href="http://www.gfzj.us/tech/2015/06/24/charles-hacking.html" target="_blank" rel="noopener">Charles Web Debugging Proxy Hacking</a><br>作者破解的过程大概就是把charles.jar反编译后找到Licence.java，然后把验证函数上返回true，然后编译成License.class重新打包进charles.jar里，<br>文中作者提供了已经hack过的Licence.java，于是我按照步骤试了一下，<br>果然，，，，失败了，</p>
+<p>文中作者有说他的操作都是在3.10.1版本才可以</p>
+<p>于是我重新下了3.10.1，再次尝试，</p>
+<p>成功了！！！<br>但是，3.10.1版本依旧存在滚屏文字错乱的问题<br>所以我折腾了这一圈并没有什么乱用</p>
+<p>既然破解的原理都辣么简单通俗易懂，我自己来hack一下License不就行了，<br>于是，<br>先要反编译一下charles，多年没摸过java，反编译工具都没有，<br>下一个，下载地址：<a href="https://github.com/skylot/jadx" target="_blank" rel="noopener">https://github.com/skylot/jadx</a><br><br><br>解压，进入jadx-0.6.0目录中,<br>（ps. 为了方便我把3.11.1的charles.jar考到jadx目录中，特么3.11.1中charles.jar所在目录变成了Contents/Java/charles.jar,之前的版本一直都是Contents/Resources/Java/charles.jar)</p>
+<p>执行命令 <code>bin/jadx-gui charles.jar</code><br><br><br><img src="/images/loading.jpeg" alt="" class="lazy-img" height="400" data-src="http://7fvd05.com1.z0.glb.clouddn.com/hacking-charles-13.png"></p>
+<p><br><br>我需要找到<code>com.xk72.charles.gui.License.java</code><br>然而<br>并没有!</p>
+<p>所以刚刚之所以用那个破解好的License.java去替换并没有用的原因就是charles升级后修改这块的验证策略，连Licence.java都没有那什么来替换，<br><br><br>会不会只是改了个类名，License.java 肯定是有的，不过它不叫这个名字而已，</p>
+<p>一般来说如果真的只换个类名应该就还在<code>com.xk72.charles.gui</code> 这个工作空间下<br>于是我看到了它，<br><img src="/images/loading.jpeg" alt="" class="lazy-img" height="400" data-src="http://7fvd05.com1.z0.glb.clouddn.com/hacking-charles-14.png"><br>和License.java内容几乎一样，居然叫个P，</p>
+<p><br><br>好吧，接下来的工作就是参照3.10.1被hack的License.java来修改代码中验证部分<br>用文件对比工具来改简单一些<br><img src="/images/loading.jpeg" alt="" class="lazy-img" height="400" data-src="http://7fvd05.com1.z0.glb.clouddn.com/hacking-charles-15.png"><br><br><br>然后把P.java拷贝到charles的包中,和<code>Contents/Java/charles.jar</code>同一级目录<br>然后<br>编译：<code>javac -source 1.6 -target 1.6 -d . P.java</code><br>打包：<code>jar -uvf charles.jar com/xk72/charles/gui/P*</code><br><br><br>最后执行打开Charles命令：<code>open /Applications/Charles.app</code>（直接双击打开也是可以的）<br>没错，<br>成功了<br><img src="/images/loading.jpeg" alt="" class="lazy-img" height="400" data-src="http://7fvd05.com1.z0.glb.clouddn.com/hacking-charles-16.png"></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2016/03/09/Charles3.11-hack/">https://caidewu.top/2016/03/09/Charles3.11-hack/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/hack/">hack</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/03/09/C语言学习笔记/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">C语言学习笔记</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/02/12/Javascript/Javascript中的构造函数/">
+        <span class="next-text nav-default">Javascript中的构造函数</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

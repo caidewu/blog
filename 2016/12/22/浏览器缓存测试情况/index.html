@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="浏览器缓存测试情况">
+
+
+
+
+  <meta name="keywords" content="浏览器, 缓存, 记忆的话语">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="记忆的话语">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="https://caidewu.top/2016/12/22/浏览器缓存测试情况/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b11bcb1227f8af701f280d2f5193ab9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 浏览器缓存测试情况 - 记忆的话语 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">记忆的话语</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">记忆的话语</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          浏览器缓存测试情况
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-12-22
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#no-cache的情况"><span class="toc-text">no-cache的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#no-store的情况"><span class="toc-text">no-store的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新鲜度有效的情况"><span class="toc-text">新鲜度有效的情况</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="no-cache的情况"><a href="#no-cache的情况" class="headerlink" title="no-cache的情况"></a>no-cache的情况</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Content-Type: image/png</span><br><span class="line">Last-Modified: Tue, 08 Nov 2016 06:59:00 GMT</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Date: Thu, 10 Nov 2016 02:48:50 GMT</span><br><span class="line">Content-Length: 3534</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>打开方式</th>
+<th>chrome</th>
+<th>safari</th>
+<th>firefox</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>刷新</td>
+<td>304</td>
+<td>304</td>
+<td>304</td>
+</tr>
+<tr>
+<td>链接打开</td>
+<td>304</td>
+<td>304</td>
+<td>304</td>
+</tr>
+<tr>
+<td>地址栏回车</td>
+<td>304</td>
+<td>304</td>
+<td>304</td>
+</tr>
+</tbody>
+</table>
+<p>304的原因是：请求头里带上了If-Modified-Since，这个请求头是判断Last-Modified的时间是否大于http连接建立时间，没有大于，所以返回304</p>
+<a id="more"></a>
+<h2 id="no-store的情况"><a href="#no-store的情况" class="headerlink" title="no-store的情况"></a>no-store的情况</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Cache-Control: no-store</span><br><span class="line">Content-Type: image/png</span><br><span class="line">Last-Modified: Tue, 08 Nov 2016 06:59:00 GMT</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Date: Thu, 10 Nov 2016 02:48:50 GMT</span><br><span class="line">Content-Length: 3534</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>打开方式</th>
+<th>chrome</th>
+<th>safari</th>
+<th>firefox</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>刷新</td>
+<td>200</td>
+<td>200</td>
+<td>200</td>
+</tr>
+<tr>
+<td>链接打开</td>
+<td>200</td>
+<td>200</td>
+<td>200</td>
+</tr>
+<tr>
+<td>地址栏回车</td>
+<td>200</td>
+<td>200</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<h2 id="新鲜度有效的情况"><a href="#新鲜度有效的情况" class="headerlink" title="新鲜度有效的情况"></a>新鲜度有效的情况</h2><ul>
+<li>在响应头中Cache Control 或Expiels没有的情况下</li>
+<li>public</li>
+<li>private</li>
+<li>max-age=大于0的数值</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>打开方式</th>
+<th>chrome</th>
+<th>safari</th>
+<th>firefox</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>刷新</td>
+<td>from cache</td>
+<td>304</td>
+<td>304</td>
+</tr>
+<tr>
+<td>链接打开</td>
+<td>from cache</td>
+<td>from cache</td>
+<td>from cache</td>
+</tr>
+<tr>
+<td>地址栏回车</td>
+<td>from cache</td>
+<td>from cache</td>
+<td>from cache</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：</strong></p>
+<ul>
+<li><p>Safari和firefox在刷新的时候出现304是因为刷新时浏览器在请求头上设置了<code>Cache-Control: max-age=0</code>，而chrome并不会</p>
+</li>
+<li><p>对于刚刚修改了的文件，且没有设置max-age或max-age很小的，二次加载资源的时间和第一次加载资源的时间间隔较长，是不会出现以下的结果，因为新鲜度是有时间限制的, 修改时间离请求建立时间越短，新鲜度有效期越短，（说明这个文件改动频繁，就不需要缓存太长时间）</p>
+<blockquote>
+<p>max-age = (Date.now() - Last-Modified) * 10%</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://caidewu.top">蔡德伍</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://caidewu.top/2016/12/22/浏览器缓存测试情况/">https://caidewu.top/2016/12/22/浏览器缓存测试情况/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/浏览器/">浏览器</a>
+            
+              <a href="/tags/缓存/">缓存</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/22/再来看Javascript中的原型/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">再来说Javascript中的原型</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/21/关于304缓存与200from-cache缓存/">
+        <span class="next-text nav-default">关于304缓存与200from cache缓存</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:caidewu555@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="http://stackoverflow.com/users/4678937/cai" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/caidewu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/cai-de-wu/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme by -
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2015 -
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">caidewu</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
